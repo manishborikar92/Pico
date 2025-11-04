@@ -1,9 +1,3 @@
-Here is the third document, which is the technical "blueprint" for your prototype. It details the exact "shopping list" of components (BoM) with Indian pricing and the all-important wiring diagram that shows how they connect.
-
-You can copy and paste everything below into your local file (e.g., `Hardware.md`).
-
----
-
 # Document 3: Hardware Bill of Materials & System Diagram
 
 This document covers the complete list of physical components required for the prototype and the pin-to-pin wiring diagram.
@@ -72,9 +66,3 @@ This is wired separately from the logic pins.
     * All your other modules (OLED, Mic, Amp, MPU, TTP) connect to the `3.3V` and `GND` pins on the ESP32 itself. The ESP32's onboard regulator will provide them with the clean 3.3V they need.
 
 **Recommendation:** Assemble this on a **breadboard** first. Do *not* solder anything permanently until you have tested each component (like we planned in the previous step).
-
----
-
-We can now move on to the next document, which addresses your critical "free API" requirement.
-
-Would you like me to generate **Document 4: Free-Tier Technology Stack & API Analysis**?

@@ -1,9 +1,3 @@
-Here is the fourth document. This is a critical one, as it directly tackles your "free as possible" requirement and analyzes the services that will form your robot's "brain."
-
-You can copy and paste everything below into your local file (e.g., `Technology_Stack.md`).
-
----
-
 # Document 4: Free-Tier Technology Stack & API Analysis
 
 This document outlines the software stack for the robot's three core AI functions: **Speech-to-Text (STT)**, **Natural Language Processing (NLP)**, and **Text-to-Speech (TTS)**. The primary goal is to use free or generous free-tier services.
@@ -60,9 +54,3 @@ You can implement the "Offline" stack's **ESP-SR** for *only* the **Wake-Word** 
 
 * **Offline:** Wake-word ("Aibi") and "turn on light" work instantly, with no Wi-Fi.
 * **Online:** For any other command ("what's the weather?"), it connects to the Google APIs.
-
----
-
-We now have all the foundational documents. The final step is to create the roadmap that puts all of this together.
-
-Would you like me to generate the **Document 5: Comprehensive Development Plan**?

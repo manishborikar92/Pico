@@ -1,7 +1,3 @@
-Here is the first document. You can copy and paste everything below into your own local file (e.g., `Project_Description.md`).
-
----
-
 # Document 1: Project Description
 
 ### 1. Project Title
@@ -27,9 +23,3 @@ It is a **"voice-first"** device that is always listening for its wake-word. Onc
 
 ### 5. Target "User" (For This Prototype)
 The primary user for this initial build is **the developer (you)**. The goal is to create a fully functional hardware and software platform. A secondary target would be the open-source/maker community, for whom this project would serve as a powerful, low-cost template for building their own companion robots.
-
----
-
-We can now move to the next document.
-
-Would you like me to generate **Document 2: Complete Features**?

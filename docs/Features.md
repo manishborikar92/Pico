@@ -1,9 +1,3 @@
-Here is the second document. This list is comprehensive and will be the "master list" of requirements for your software.
-
-You can copy and paste everything below into your local file (e.g., `Features.md`).
-
----
-
 # Document 2: Complete Features
 
 This document outlines the complete feature set for the robot, broken down by functional category.
@@ -52,9 +46,3 @@ This is the "state machine" that links triggers to reactions.
 * **[H-3] Wearable Design:** The Head's magnet is strong enough to attach to a shirt/pocket using a secondary magnetic clip, or to a metal surface (like a fridge).
 * **[H-4] Charging System:** A TP4056 module in the Base charges the LiPo battery in the Head, ideally via pogo pins or magnetic contacts.
 * **[H-5] Touch Sensor:** A TTP223 capacitive touch sensor integrated into the Head's enclosure (e.g., on the "forehead") for "petting."
-
----
-
-We can now proceed to the next document, which is the crucial hardware "blueprint."
-
-Would you like me to generate **Document 3: Hardware Bill of Materials & System Diagram**?
