@@ -1,8 +1,10 @@
-# Document 3: Hardware Bill of Materials & System Diagram
+# Hardware Bill of Materials & System Diagram
 
-This document covers the complete list of physical components required for the prototype and the pin-to-pin wiring diagram.
+This document provides a complete list of physical components required for the prototype and detailed pin-to-pin wiring diagrams.
 
-**⚠️ CRITICAL UPDATE:** This hardware specification is based on extensive research of the ESP32-S3-EYE platform and current Indian market pricing. The development follows a **software-first approach** - complete all AI development in Python on your PC before purchasing any hardware.
+**⚠️ CRITICAL UPDATE:** This hardware specification is based on extensive research of the ESP32-S3-EYE platform and current Indian market pricing. The development follows a **software-first approach**—complete all AI development in Python on your PC before purchasing any hardware.
+
+---
 
 ## 1. Detailed Hardware Specifications
 
@@ -28,59 +30,66 @@ This document covers the complete list of physical components required for the p
 **Pricing Research Methodology:** Prices verified across multiple Indian suppliers including Robu.in, ElectronicsComp, Amazon.in, and local electronics markets as of November 2024.
 
 | Component | Specific Model/Specs | Technical Purpose | Verified Cost (₹) | Supplier Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **Main Board** | **ESP32-S3-EYE Development Kit** | Core processing, AI acceleration, camera, microphone | ₹4,200 - ₹5,500 | Available at Robu.in, Amazon.in |
-| **Display** | **0.96" OLED SSD1306 128x64 I2C** | Emotional expression display, status indicators | ₹280 - ₹420 | White/Blue variants available |
-| **Audio Amp** | **MAX98357A I2S Class-D Amplifier** | High-quality digital audio amplification | ₹220 - ₹320 | Adafruit-compatible modules |
-| **Speaker** | **28mm 1W 8Ω Neodymium Speaker** | Clear audio output for voice and sounds | ₹80 - ₹150 | Compact form factor essential |
-| **Battery** | **3.7V 1000mAh LiPo (603450 size)** | 6-8 hour operation, compact design | ₹450 - ₹650 | JST connector preferred |
-| **Charger** | **TP4056 USB-C with Protection** | Safe LiPo charging with overcurrent protection | ₹120 - ₹180 | Must include DW01A protection |
-| **Motion** | **MPU-6050 6-DOF IMU Module** | Orientation, shake detection, gesture recognition | ₹150 - ₹220 | GY-521 breakout board |
-| **Touch** | **TTP223 Capacitive Touch Sensor** | Human-robot physical interaction | ₹60 - ₹100 | Digital output, 3.3V compatible |
-| **Magnets** | **N52 Neodymium 10mm x 3mm (4pcs)** | Modular attachment system | ₹200 - ₹300 | Strong rare-earth magnets |
-| **Enclosure** | **PLA 3D Printing (200g material)** | Custom robot housing, professional finish | ₹600 - ₹1,200 | Local 3D printing services |
-| **Electronics** | **Breadboard, Jumpers, Headers** | Prototyping and final assembly | ₹300 - ₹450 | Quality dupont connectors |
-| | | **TOTAL REALISTIC COST** | **₹6,660 - ₹9,490** | **Average: ₹8,075** |
+|:----------|:--------------------|:------------------|:------------------|:---------------|
+| **Main Board** | **ESP32-S3-EYE Development Kit** | Core processing, AI acceleration, camera, microphone | ₹4,200–₹5,500 | Available at Robu.in, Amazon.in |
+| **Display** | **0.96" OLED SSD1306 128×64 I2C** | Emotional expression display, status indicators | ₹280–₹420 | White/Blue variants available |
+| **Audio Amp** | **MAX98357A I2S Class-D Amplifier** | High-quality digital audio amplification | ₹220–₹320 | Adafruit-compatible modules |
+| **Speaker** | **28mm 1W 8Ω Neodymium Speaker** | Clear audio output for voice and sounds | ₹80–₹150 | Compact form factor essential |
+| **Battery** | **3.7V 1000mAh LiPo (603450 size)** | 6–8 hour operation, compact design | ₹450–₹650 | JST connector preferred |
+| **Charger** | **TP4056 USB-C with Protection** | Safe LiPo charging with overcurrent protection | ₹120–₹180 | Must include DW01A protection |
+| **Motion** | **MPU-6050 6-DOF IMU Module** | Orientation, shake detection, gesture recognition | ₹150–₹220 | GY-521 breakout board |
+| **Touch** | **TTP223 Capacitive Touch Sensor** | Human-robot physical interaction | ₹60–₹100 | Digital output, 3.3V compatible |
+| **Magnets** | **N52 Neodymium 10mm × 3mm (4pcs)** | Modular attachment system | ₹200–₹300 | Strong rare-earth magnets |
+| **Enclosure** | **PLA 3D Printing (200g material)** | Custom robot housing, professional finish | ₹600–₹1,200 | Local 3D printing services |
+| **Electronics** | **Breadboard, Jumpers, Headers** | Prototyping and final assembly | ₹300–₹450 | Quality DuPont connectors |
+| | | **TOTAL REALISTIC COST** | **₹6,660–₹9,490** | **Average: ₹8,075** |
 
 **Critical Cost Analysis:**
 - **Previous estimate of ₹5,000 was unrealistic** based on actual market research
-- **ESP32-S3-EYE alone costs ₹4,200-₹5,500** in Indian market
-- **Realistic budget should be ₹8,000-₹10,000** for quality components
+- **ESP32-S3-EYE alone costs ₹4,200–₹5,500** in the Indian market
+- **Realistic budget should be ₹8,000–₹10,000** for quality components
 - **Cost can be reduced by using generic alternatives** but may impact reliability
 
-**Note:** The ESP32-S3-EYE board replaces the separate ESP32-S3 and INMP441 microphone from the original design, and adds the essential camera capability. While the cost is higher, it provides significantly more functionality.
+**Note:** The ESP32-S3-EYE board replaces the separate ESP32-S3 and INMP441 microphone from the original design and adds essential camera capability. While the cost is higher, it provides significantly more functionality.
 
 ### 1.3 Alternative Component Options (Cost Optimization)
 
 **Budget-Conscious Alternatives:**
+
 | Original Component | Budget Alternative | Cost Savings | Trade-offs |
-| :--- | :--- | :--- | :--- |
+|:-------------------|:-------------------|:-------------|:-----------|
 | ESP32-S3-EYE (₹5,500) | ESP32-CAM + ESP32-S3 (₹2,800) | ₹2,700 | More complex wiring, larger size |
-| 1000mAh LiPo (₹650) | 500mAh LiPo (₹350) | ₹300 | Reduced battery life (3-4 hours) |
+| 1000mAh LiPo (₹650) | 500mAh LiPo (₹350) | ₹300 | Reduced battery life (3–4 hours) |
 | Professional 3D Print (₹1,200) | DIY Cardboard/Acrylic (₹200) | ₹1,000 | Less durable, basic appearance |
 
 **Premium Upgrade Options:**
+
 | Component | Premium Option | Additional Cost | Benefits |
-| :--- | :--- | :--- | :--- |
+|:----------|:---------------|:----------------|:---------|
 | Standard Speaker | High-fidelity 2W Speaker | +₹200 | Superior audio quality |
 | Basic OLED | Color TFT Display | +₹800 | Full-color expressions |
 | Standard Battery | 2000mAh High-capacity | +₹400 | 12+ hour operation |
 
+---
+
 ## 2. Essential Development Tools
 
 ### 2.1 Hardware Tools (One-Time Investment)
-| Tool | Specification | Purpose | Cost (₹) |
-| :--- | :--- | :--- | :--- |
-| **Soldering Iron** | 25W adjustable temperature | Component assembly | ₹400 - ₹800 |
-| **Solder Wire** | 0.8mm rosin core, lead-free | Electrical connections | ₹150 - ₹250 |
-| **Digital Multimeter** | Basic DC/AC measurement | Circuit debugging | ₹300 - ₹600 |
-| **Wire Strippers** | 22-30 AWG capacity | Cable preparation | ₹200 - ₹400 |
-| **Precision Screwdrivers** | Phillips/flathead set | Assembly work | ₹150 - ₹300 |
-| **Anti-static Wrist Strap** | ESD protection | Component safety | ₹100 - ₹200 |
-| **Breadboard** | 830-point half-size | Prototyping | ₹150 - ₹250 |
-| **Jumper Wires** | Male-male, male-female sets | Connections | ₹100 - ₹200 |
 
-**Total Tool Investment:** ₹1,550 - ₹3,000 (one-time cost for multiple projects)
+| Tool | Specification | Purpose | Cost (₹) |
+|:-----|:--------------|:--------|:---------|
+| **Soldering Iron** | 25W adjustable temperature | Component assembly | ₹400–₹800 |
+| **Solder Wire** | 0.8mm rosin core, lead-free | Electrical connections | ₹150–₹250 |
+| **Digital Multimeter** | Basic DC/AC measurement | Circuit debugging | ₹300–₹600 |
+| **Wire Strippers** | 22–30 AWG capacity | Cable preparation | ₹200–₹400 |
+| **Precision Screwdrivers** | Phillips/flathead set | Assembly work | ₹150–₹300 |
+| **Anti-static Wrist Strap** | ESD protection | Component safety | ₹100–₹200 |
+| **Breadboard** | 830-point half-size | Prototyping | ₹150–₹250 |
+| **Jumper Wires** | Male-male, male-female sets | Connections | ₹100–₹200 |
+
+**Total Tool Investment:** ₹1,550–₹3,000 (one-time cost for multiple projects)
+
+---
 
 ## 3. Detailed System Architecture & Wiring
 
@@ -89,14 +98,15 @@ This document covers the complete list of physical components required for the p
 **Critical Research Finding:** The ESP32-S3-EYE uses specific pins for built-in peripherals. External component connections must avoid conflicts.
 
 **Reserved Pins (DO NOT USE):**
-- **GPIO 0-15:** Camera interface (SIOD, SIOC, VSYNC, HREF, PCLK, XCLK, D0-D7)
+- **GPIO 0–15:** Camera interface (SIOD, SIOC, VSYNC, HREF, PCLK, XCLK, D0–D7)
 - **GPIO 41, 42:** I2S microphone (WS, SCK)
 - **GPIO 2:** Built-in LED indicator
 - **GPIO 46:** Boot mode selection
 
 **Available Pins for External Components:**
+
 | Pin Number | Function | Max Current | Notes |
-| :--- | :--- | :--- | :--- |
+|:-----------|:---------|:------------|:------|
 | **GPIO 16** | General I/O | 40mA | Recommended for I2C SDA |
 | **GPIO 17** | General I/O | 40mA | Recommended for I2C SCL |
 | **GPIO 18** | General I/O | 40mA | Touch sensor input |
@@ -109,7 +119,7 @@ This document covers the complete list of physical components required for the p
 **IMPORTANT CORRECTION:** Previous pin assignments were incorrect. Here's the research-verified wiring:
 
 | ESP32-S3-EYE Pin | Component | Component Pin | Signal Type | Notes |
-| :--- | :--- | :--- | :--- | :--- |
+|:-----------------|:----------|:--------------|:------------|:------|
 | **3.3V** | All External Modules | VCC/VDD | Power Supply | Max 500mA total |
 | **GND** | All External Modules | GND | Ground Reference | Multiple connections OK |
 | **GPIO 16** | OLED Display | SDA | I2C Data | 4.7kΩ pullup required |
@@ -139,20 +149,23 @@ This document covers the complete list of physical components required for the p
 ### 3.4 Power Distribution Analysis
 
 **Power Consumption Research:**
+
 | Component | Operating Voltage | Current Draw | Power (mW) |
-| :--- | :--- | :--- | :--- |
-| ESP32-S3-EYE (Active) | 3.3V | 200-300mA | 660-990 |
-| ESP32-S3-EYE (Sleep) | 3.3V | 10-50μA | 0.033-0.165 |
-| OLED Display | 3.3V | 20-30mA | 66-99 |
-| MAX98357A Amp | 3.3V | 50-100mA | 165-330 |
-| MPU-6050 | 3.3V | 3-5mA | 10-16.5 |
-| TTP223 Touch | 3.3V | 1-2mA | 3.3-6.6 |
-| **Total Active** | | **274-437mA** | **904-1,442mW** |
+|:----------|:------------------|:-------------|:-----------|
+| ESP32-S3-EYE (Active) | 3.3V | 200–300mA | 660–990 |
+| ESP32-S3-EYE (Sleep) | 3.3V | 10–50μA | 0.033–0.165 |
+| OLED Display | 3.3V | 20–30mA | 66–99 |
+| MAX98357A Amp | 3.3V | 50–100mA | 165–330 |
+| MPU-6050 | 3.3V | 3–5mA | 10–16.5 |
+| TTP223 Touch | 3.3V | 1–2mA | 3.3–6.6 |
+| **Total Active** | | **274–437mA** | **904–1,442mW** |
 
 **Battery Life Calculation:**
-- **1000mAh Battery:** 2.3-3.6 hours continuous operation
-- **With Sleep Mode:** 8-12 hours typical usage (30% active time)
+- **1000mAh Battery:** 2.3–3.6 hours continuous operation
+- **With Sleep Mode:** 8–12 hours typical usage (30% active time)
 - **Optimization Potential:** Up to 24 hours with aggressive power management
+
+---
 
 ## 4. Advanced Power Management System
 
@@ -166,6 +179,7 @@ This document covers the complete list of physical components required for the p
 ```
 
 **Critical Wiring Specifications:**
+
 1. **Battery to TP4056 Charger:**
    - LiPo `Positive (Red)` → TP4056 `B+` terminal
    - LiPo `Negative (Black)` → TP4056 `B-` terminal
@@ -193,12 +207,13 @@ This document covers the complete list of physical components required for the p
   - Thermal protection
 
 **ESP32-S3 Power Modes:**
+
 | Mode | CPU State | Power Draw | Wake Sources |
-| :--- | :--- | :--- | :--- |
-| **Active** | Full operation | 200-300mA | N/A |
-| **Modem Sleep** | CPU active, Wi-Fi off | 50-100mA | Timer, GPIO |
-| **Light Sleep** | CPU paused | 10-20mA | Timer, GPIO, touch |
-| **Deep Sleep** | CPU off | 10-50μA | Timer, GPIO, touch |
+|:-----|:----------|:-----------|:-------------|
+| **Active** | Full operation | 200–300mA | N/A |
+| **Modem Sleep** | CPU active, Wi-Fi off | 50–100mA | Timer, GPIO |
+| **Light Sleep** | CPU paused | 10–20mA | Timer, GPIO, touch |
+| **Deep Sleep** | CPU off | 10–50μA | Timer, GPIO, touch |
 
 ### 4.3 Battery Monitoring & Safety
 
@@ -241,32 +256,34 @@ void checkBatteryStatus() {
 }
 ```
 
+---
+
 ## 5. Hardware Development Strategy & Risk Mitigation
 
 ### 5.1 Phased Hardware Acquisition Strategy
 
 **⚠️ CRITICAL SUCCESS FACTOR:** Follow this exact sequence to minimize risk and cost.
 
-**Phase 1: PC Simulation (Weeks 1-4) - ₹0 Hardware Cost**
+**Phase 1: PC Simulation (Weeks 1–4) - ₹0 Hardware Cost**
 - Complete AI development using existing laptop hardware
 - Validate all algorithms and user interactions
 - Perfect the personality engine and response system
 - Test face recognition with laptop webcam
 - Verify voice interaction with laptop audio
 
-**Phase 2: Core Hardware (Week 5) - ₹4,500-₹6,000**
+**Phase 2: Core Hardware (Week 5) - ₹4,500–₹6,000**
 - Purchase ESP32-S3-EYE board only
 - Basic breadboard and jumper wires
 - Test camera and microphone functionality
 - Verify AI model porting feasibility
 
-**Phase 3: Complete System (Week 6-7) - ₹2,000-₹3,000**
+**Phase 3: Complete System (Week 6–7) - ₹2,000–₹3,000**
 - Purchase remaining components after core validation
 - OLED display, amplifier, speaker, sensors
 - Battery and charging system
 - Complete breadboard prototype
 
-**Phase 4: Final Assembly (Week 8-9) - ₹800-₹1,200**
+**Phase 4: Final Assembly (Week 8–9) - ₹800–₹1,200**
 - 3D printing and enclosure fabrication
 - Professional assembly and finishing
 - Quality testing and calibration
@@ -312,7 +329,7 @@ void checkBatteryStatus() {
 **Common Hardware Issues & Solutions:**
 
 | Problem | Symptoms | Solution | Prevention |
-| :--- | :--- | :--- | :--- |
+|:--------|:---------|:---------|:-----------|
 | **Power Issues** | Random resets, brown-outs | Check power supply capacity | Use quality TP4056 module |
 | **I2C Conflicts** | Sensor not detected | Verify addresses, pullups | Use I2C scanner code |
 | **Audio Distortion** | Poor sound quality | Check I2S timing, connections | Use shielded cables |

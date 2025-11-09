@@ -1,39 +1,44 @@
-# Document 5: Comprehensive Development Plan
+# Comprehensive Development Plan for AI Companion Robot
 
-### Project Philosophy
-**Software-First Approach:** Build and test 90% of the robot's intelligence in Python on your PC before purchasing any hardware. This allows rapid development, easy debugging, and ensures the AI logic is solid before hardware investment.
+## Project Philosophy
 
-**Development Phases:**
-1. **PC Simulation Phase:** Develop complete robot personality using laptop's webcam, mic, and speakers
-2. **Hardware Porting Phase:** Port working Python code to ESP32-S3-EYE hardware
-3. **Physical Assembly Phase:** Integrate into final 3D-printed enclosure
+**Software-First Approach:** Develop and test 90% of the robot's intelligence in Python on your PC before purchasing any hardware. This approach enables rapid development, easy debugging, and ensures the AI logic is solid before any hardware investment.
+
+### Development Phases
+
+1. **PC Simulation Phase:** Develop the complete robot personality using your laptop's webcam, microphone, and speakers
+2. **Hardware Porting Phase:** Port the working Python code to ESP32-S3-EYE hardware
+3. **Physical Assembly Phase:** Integrate components into the final 3D-printed enclosure
 
 ---
 
-## PHASE 1: PC SIMULATION (No Hardware Required)
+## Phase 1: PC Simulation (No Hardware Required)
 
 ### Milestone 1: The "Simulated Pet" (PC-Only, Python)
+
 *Goal: Build the robot's brain and "Emotion Engine" on your laptop.*
 
 #### Task 1.1: Complete Development Environment Setup
 
 **Step 1: Python Installation & Verification**
+
 ```bash
 # Verify Python version (3.10+ required for latest AI libraries)
 python --version
 # If not 3.10+, download from python.org
 
 # Create isolated project environment
-python -m venv aibi_robot_env
+python -m venv pico_robot_env
 
 # Activate environment
 # Windows:
-aibi_robot_env\Scripts\activate
+pico_robot_env\Scripts\activate
 # macOS/Linux:
-source aibi_robot_env/bin/activate
+source pico_robot_env/bin/activate
 ```
 
 **Step 2: Install Core Dependencies (Exact Versions)**
+
 ```bash
 # Update package managers
 pip install --upgrade pip setuptools wheel
@@ -63,6 +68,7 @@ pip install pygame==2.5.2
 ```
 
 **Step 3: Hardware Compatibility Testing**
+
 ```python
 # Create test_hardware.py
 import cv2
@@ -139,6 +145,7 @@ if __name__ == "__main__":
 ```
 
 **Step 4: Google Cloud API Setup**
+
 ```bash
 # Install Google Cloud CLI
 # Windows: Download from cloud.google.com/sdk
@@ -159,6 +166,7 @@ gcloud services enable texttospeech.googleapis.com
 ```
 
 **Step 5: Project Structure Setup**
+
 ```
 aibi_robot/
 ├── src/
@@ -179,9 +187,10 @@ aibi_robot/
 ```
 
 **✅ Success Criteria:**
+
 - Python 3.10+ environment activated
 - All libraries installed without errors
-- Camera, microphone, speakers tested and working
+- Camera, microphone, and speakers tested and working
 - Google Cloud APIs authenticated
 - Project structure created
 - Hardware compatibility confirmed
@@ -189,6 +198,7 @@ aibi_robot/
 #### Task 1.2: Advanced Emotion Engine Development
 
 **Step 1: Core State Machine Architecture**
+
 ```python
 # src/emotion_engine.py
 from enum import Enum, auto
@@ -413,6 +423,7 @@ class EmotionEngine:
 ```
 
 **Step 2: Interactive Robot Simulator**
+
 ```python
 # src/robot_core.py
 import threading
@@ -429,7 +440,7 @@ class RobotSimulator:
     def start_simulation(self):
         """Start the robot simulation"""
         self.running = True
-        print("🤖 Aibi Robot Simulator Starting...")
+        print("🤖 Pico Robot Simulator Starting...")
         print("=" * 50)
         
         # Start the emotion engine
@@ -455,7 +466,7 @@ class RobotSimulator:
     def stop_simulation(self):
         """Stop the robot simulation"""
         self.running = False
-        print("\n🤖 Aibi Robot Simulator Stopped.")
+        print("\n🤖 Pico Robot Simulator Stopped.")
         
     def _input_loop(self):
         """Handle keyboard input for simulation"""
@@ -552,6 +563,7 @@ if __name__ == "__main__":
 ```
 
 **Step 3: Advanced Testing Framework**
+
 ```python
 # tests/test_emotion_engine.py
 import unittest
@@ -618,6 +630,7 @@ if __name__ == "__main__":
 ```
 
 **✅ Success Criteria:**
+
 - Emotion engine responds correctly to all input types
 - State transitions follow logical patterns
 - Console displays appropriate eye expressions
@@ -627,132 +640,148 @@ if __name__ == "__main__":
 - Interactive simulation runs smoothly
 
 #### Task 1.3: Integrate Cloud AI
-* **Step 1:** Set up **Google Gemini API** credentials
-* **Step 2:** Implement voice recording using your **laptop's microphone**
-* **Step 3:** Integrate **Google STT API** to convert speech to text
-* **Step 4:** Send text to **Gemini API** for intelligent responses
-* **Step 5:** Use **Google TTS API** or Gemini's audio response to generate speech
-* **Step 6:** Play audio responses through your **laptop's speakers**
-* **✅ Success:** You can talk to your "pet" through your laptop. Say "What's 5x4?" and it answers out loud. Press 't' and it prints `[EYES]: Purring...`
+
+- **Step 1:** Set up Google Gemini API credentials
+- **Step 2:** Implement voice recording using your laptop's microphone
+- **Step 3:** Integrate Google STT API to convert speech to text
+- **Step 4:** Send text to Gemini API for intelligent responses
+- **Step 5:** Use Google TTS API or Gemini's audio response to generate speech
+- **Step 6:** Play audio responses through your laptop's speakers
+- **✅ Success:** You can talk to your "pet" through your laptop. Say "What's 5×4?" and it answers out loud. Press 't' and it prints `[EYES]: Purring...`
 
 ---
 
 ### Milestone 2: The "Seeing & Hearing" AI (PC-Only, Python)
+
 *Goal: Develop face and voice recognition capabilities.*
 
 #### Task 2.1: Face Detection (The "Eye")
-* **Step 1:** Install and configure **OpenCV**
-* **Step 2:** Write script to access your **laptop's webcam**
-* **Step 3:** Implement face detection using OpenCV's pre-trained models
-* **Step 4:** Display video feed with face detection boxes
-* **✅ Success:** Webcam shows live video with boxes around detected faces
+
+- **Step 1:** Install and configure OpenCV
+- **Step 2:** Write script to access your laptop's webcam
+- **Step 3:** Implement face detection using OpenCV's pre-trained models
+- **Step 4:** Display video feed with face detection boxes
+- **✅ Success:** Webcam shows live video with boxes around detected faces
 
 #### Task 2.2: Face Recognition (Training "Who")
-* **Step 1:** Create face training system using **face_recognition** library
-* **Step 2:** Use webcam to capture 20-30 photos of your face for training
-* **Step 3:** Train face recognition model to learn your face
-* **Step 4:** Test recognition system with live webcam feed
-* **✅ Success:** Python script recognizes you and prints `[RECOGNITION]: Hello, [Your Name]!`
 
-#### Task 2.3: Voice Recognition (Training "Whose Voice") - Advanced
-* **Step 1:** Research **pyAudioAnalysis** or **speechrecognition** for speaker ID
-* **Step 2:** Record yourself saying 10-15 different phrases
-* **Step 3:** Train speaker identification model
-* **Step 4:** Test voice recognition with live microphone input
-* **✅ Success:** Script identifies your voice and prints `[VOICE ID]: Speaker is [Your Name]`
+- **Step 1:** Create face training system using the `face_recognition` library
+- **Step 2:** Use webcam to capture 20–30 photos of your face for training
+- **Step 3:** Train face recognition model to learn your face
+- **Step 4:** Test recognition system with live webcam feed
+- **✅ Success:** Python script recognizes you and prints `[RECOGNITION]: Hello, [Your Name]!`
+
+#### Task 2.3: Voice Recognition (Training "Whose Voice") — Advanced
+
+- **Step 1:** Research `pyAudioAnalysis` or `speechrecognition` for speaker ID
+- **Step 2:** Record yourself saying 10–15 different phrases
+- **Step 3:** Train speaker identification model
+- **Step 4:** Test voice recognition with live microphone input
+- **✅ Success:** Script identifies your voice and prints `[VOICE ID]: Speaker is [Your Name]`
 
 #### Task 2.4: Integrate with "Emotion Engine"
-* **Step 1:** Combine Milestones 1 & 2 into unified system
-* **Step 2:** Robot's `IDLE` state now includes webcam monitoring
-* **Step 3:** Implement face-based state changes:
-  * *If* it sees *your* face → state changes to `HAPPY` → prints `[EYES]: ^.^`
-  * *If* it sees *stranger's* face → state changes to `CURIOUS` → prints `[EYES]: o.O`
-  * *If* no face visible → returns to `IDLE` state
-* **✅ Success:** Complete AI personality system working on PC with face recognition
+
+- **Step 1:** Combine Milestones 1 & 2 into a unified system
+- **Step 2:** Robot's `IDLE` state now includes webcam monitoring
+- **Step 3:** Implement face-based state changes:
+  - *If* it sees *your* face → state changes to `HAPPY` → prints `[EYES]: ^.^`
+  - *If* it sees a *stranger's* face → state changes to `CURIOUS` → prints `[EYES]: o.O`
+  - *If* no face is visible → returns to `IDLE` state
+- **✅ Success:** Complete AI personality system working on PC with face recognition
 
 ---
 
-## PHASE 2: HARDWARE IMPLEMENTATION
+## Phase 2: Hardware Implementation
 
 ### Milestone 3: Hardware Purchase & "Porting"
+
 *Goal: Move the simulated logic to real-world robot hardware.*
 
 #### Task 3.1: Purchase Hardware
+
 **⚠️ Only proceed after completing Phase 1 successfully**
-* **Step 1:** Purchase **ESP32-S3-EYE** development board
-* **Step 2:** Purchase remaining components from **Hardware BoM (Document 3)**:
-  * OLED screen, MAX98357 amp, speaker, TP4056, battery, touch sensor
-  * Note: Microphone is built into the ESP32-S3-EYE board
-* **Step 3:** Acquire breadboard and jumper wires for prototyping
-* **✅ Success:** All hardware components acquired and ready for development
+
+- **Step 1:** Purchase ESP32-S3-EYE development board
+- **Step 2:** Purchase remaining components from Hardware BoM (Document 3):
+  - OLED screen, MAX98357 amp, speaker, TP4056, battery, touch sensor
+  - Note: Microphone is built into the ESP32-S3-EYE board
+- **Step 3:** Acquire breadboard and jumper wires for prototyping
+- **✅ Success:** All hardware components acquired and ready for development
 
 #### Task 3.2: "Port" the Code
-* **Step 1:** Install **Arduino IDE** and **ESP32-S3** board support
-* **Step 2:** Install required libraries: **ESP-WHO**, **Adafruit GFX**, **WiFi**
-* **Step 3:** Rewrite Python logic in **C++/Arduino**:
-  * `print("[EYES]: Happy")` → `oled.drawBitmap(...)`
-  * `input()` keyboard simulation → `digitalRead(TOUCH_PIN)`
-  * Python API calls → C++ `HTTPClient` requests
-* **Step 4:** Test each component individually before integration
-* **✅ Success:** Hardware components respond correctly to C++ code
+
+- **Step 1:** Install Arduino IDE and ESP32-S3 board support
+- **Step 2:** Install required libraries: ESP-WHO, Adafruit GFX, WiFi
+- **Step 3:** Rewrite Python logic in C++/Arduino:
+  - `print("[EYES]: Happy")` → `oled.drawBitmap(...)`
+  - `input()` keyboard simulation → `digitalRead(TOUCH_PIN)`
+  - Python API calls → C++ `HTTPClient` requests
+- **Step 4:** Test each component individually before integration
+- **✅ Success:** Hardware components respond correctly to C++ code
 
 #### Task 3.3: Port the AI Models
-* **Step 1:** Implement **ESP-WHO** library for face detection on ESP32-S3-EYE
-* **Step 2:** Port face recognition models to run on-chip
-* **Step 3:** Integrate **ESP-SR** for wake-word detection
-* **Step 4:** Test complete AI pipeline on hardware
-* **✅ Success:** Physical robot demonstrates all capabilities from Python simulation
+
+- **Step 1:** Implement ESP-WHO library for face detection on ESP32-S3-EYE
+- **Step 2:** Port face recognition models to run on-chip
+- **Step 3:** Integrate ESP-SR for wake-word detection
+- **Step 4:** Test complete AI pipeline on hardware
+- **✅ Success:** Physical robot demonstrates all capabilities from Python simulation
 
 ---
 
-## PHASE 3: FINAL ASSEMBLY
+## Phase 3: Final Assembly
 
 ### Milestone 4: Physical Integration & Assembly
+
 *Goal: Create the final, self-contained robot.*
 
 #### Task 4.1: Hardware Integration Testing
-* **Step 1:** Assemble all components on breadboard following **wiring diagram**
-* **Step 2:** Test complete system integration
-* **Step 3:** Verify all sensors, camera, microphone, and speaker work together
-* **Step 4:** Test battery power and charging system
-* **✅ Success:** Complete robot functionality verified on breadboard
+
+- **Step 1:** Assemble all components on breadboard following the wiring diagram
+- **Step 2:** Test complete system integration
+- **Step 3:** Verify all sensors, camera, microphone, and speaker work together
+- **Step 4:** Test battery power and charging system
+- **✅ Success:** Complete robot functionality verified on breadboard
 
 #### Task 4.2: 3D Design & Printing
-* **Step 1:** Design 3D model for robot enclosure accommodating ESP32-S3-EYE
-* **Step 2:** Create modular "Head" and "Base" design with magnetic attachment
-* **Step 3:** 3D print enclosure parts
-* **Step 4:** Test fit of all components in printed enclosure
-* **✅ Success:** 3D printed parts ready for final assembly
+
+- **Step 1:** Design 3D model for robot enclosure accommodating ESP32-S3-EYE
+- **Step 2:** Create modular "Head" and "Base" design with magnetic attachment
+- **Step 3:** 3D print enclosure parts
+- **Step 4:** Test fit of all components in printed enclosure
+- **✅ Success:** 3D printed parts ready for final assembly
 
 #### Task 4.3: Final Assembly & Testing
-* **Step 1:** Transfer components from breadboard to final enclosure
-* **Step 2:** Solder permanent connections following safety procedures
-* **Step 3:** Install battery and charging system
-* **Step 4:** Load final firmware and test all functions
-* **Step 5:** Conduct comprehensive system testing
-* **✅ Success:** Fully functional, self-contained AI companion robot
+
+- **Step 1:** Transfer components from breadboard to final enclosure
+- **Step 2:** Solder permanent connections following safety procedures
+- **Step 3:** Install battery and charging system
+- **Step 4:** Load final firmware and test all functions
+- **Step 5:** Conduct comprehensive system testing
+- **✅ Success:** Fully functional, self-contained AI companion robot
 
 ---
 
 ## Development Timeline Estimate
 
-**Phase 1 (PC Simulation):** 2-4 weeks
-**Phase 2 (Hardware Porting):** 2-3 weeks  
-**Phase 3 (Final Assembly):** 1-2 weeks
+- **Phase 1 (PC Simulation):** 2–4 weeks
+- **Phase 2 (Hardware Porting):** 2–3 weeks
+- **Phase 3 (Final Assembly):** 1–2 weeks
 
-**Total Project Duration:** 5-9 weeks
+**Total Project Duration:** 5–9 weeks
 
 **Critical Success Factor:** Do NOT purchase hardware until Phase 1 is 100% complete and working on your PC.
----
 
+---
 
 ## Advanced Project Management & Risk Analysis
 
 ### Detailed Timeline Analysis (Research-Based)
 
-**Phase 1: PC Simulation Development (4-6 weeks)**
+#### Phase 1: PC Simulation Development (4–6 weeks)
+
 | Week | Focus Area | Key Deliverables | Risk Level |
-| :--- | :--- | :--- | :--- |
+|------|------------|------------------|------------|
 | **Week 1** | Environment Setup | Python env, libraries, hardware tests | Low |
 | **Week 2** | Core Systems | Emotion engine, basic face detection | Medium |
 | **Week 3** | AI Integration | Google APIs, voice processing | High |
@@ -760,47 +789,51 @@ if __name__ == "__main__":
 | **Week 5** | Integration | Complete system integration | Medium |
 | **Week 6** | Testing & Polish | Bug fixes, performance optimization | Low |
 
-**Phase 2: Hardware Implementation (3-4 weeks)**
+#### Phase 2: Hardware Implementation (3–4 weeks)
+
 | Week | Focus Area | Key Deliverables | Risk Level |
-| :--- | :--- | :--- | :--- |
+|------|------------|------------------|------------|
 | **Week 7** | Hardware Acquisition | ESP32-S3-EYE, components, testing | Medium |
 | **Week 8** | Code Porting | Python to C++ translation | High |
 | **Week 9** | Hardware Integration | Component assembly, testing | High |
 | **Week 10** | System Validation | Complete hardware testing | Medium |
 
-**Phase 3: Final Assembly (2-3 weeks)**
+#### Phase 3: Final Assembly (2–3 weeks)
+
 | Week | Focus Area | Key Deliverables | Risk Level |
-| :--- | :--- | :--- | :--- |
+|------|------------|------------------|------------|
 | **Week 11** | Enclosure Design | 3D modeling, printing | Medium |
 | **Week 12** | Final Assembly | Professional assembly, calibration | Low |
 | **Week 13** | Quality Assurance | Testing, documentation | Low |
 
 ### Risk Assessment & Mitigation Strategies
 
-**High-Risk Areas:**
-1. **Google API Integration (Week 3)**
-   - **Risk:** API authentication failures, quota limits
-   - **Mitigation:** Test with small requests, implement fallbacks
-   - **Backup Plan:** Use offline alternatives (Vosk, local TTS)
+#### High-Risk Areas
 
-2. **Face Recognition Training (Week 4)**
-   - **Risk:** Poor accuracy, lighting sensitivity
-   - **Mitigation:** Multiple training sessions, diverse lighting
-   - **Backup Plan:** Simplified detection without recognition
+**1. Google API Integration (Week 3)**
+- **Risk:** API authentication failures, quota limits
+- **Mitigation:** Test with small requests, implement fallbacks
+- **Backup Plan:** Use offline alternatives (Vosk, local TTS)
 
-3. **Hardware Code Porting (Week 8)**
-   - **Risk:** Memory limitations, timing issues
-   - **Mitigation:** Modular porting, extensive testing
-   - **Backup Plan:** Reduced feature set for hardware constraints
+**2. Face Recognition Training (Week 4)**
+- **Risk:** Poor accuracy, lighting sensitivity
+- **Mitigation:** Multiple training sessions, diverse lighting
+- **Backup Plan:** Simplified detection without recognition
 
-4. **ESP32-S3-EYE Integration (Week 9)**
-   - **Risk:** Pin conflicts, power issues, camera problems
-   - **Mitigation:** Careful pin mapping, power analysis
-   - **Backup Plan:** Alternative ESP32-CAM + ESP32-S3 setup
+**3. Hardware Code Porting (Week 8)**
+- **Risk:** Memory limitations, timing issues
+- **Mitigation:** Modular porting, extensive testing
+- **Backup Plan:** Reduced feature set for hardware constraints
+
+**4. ESP32-S3-EYE Integration (Week 9)**
+- **Risk:** Pin conflicts, power issues, camera problems
+- **Mitigation:** Careful pin mapping, power analysis
+- **Backup Plan:** Alternative ESP32-CAM + ESP32-S3 setup
 
 ### Success Metrics & Checkpoints
 
-**Phase 1 Completion Criteria:**
+#### Phase 1 Completion Criteria
+
 - [ ] Face detection accuracy >90% in various lighting
 - [ ] Voice recognition working with <2s latency
 - [ ] Google APIs integrated with error handling
@@ -808,7 +841,8 @@ if __name__ == "__main__":
 - [ ] All unit tests passing (>95% coverage)
 - [ ] Performance benchmarks met on PC
 
-**Phase 2 Completion Criteria:**
+#### Phase 2 Completion Criteria
+
 - [ ] All hardware components individually tested
 - [ ] Core functionality ported to ESP32-S3-EYE
 - [ ] Face detection working on hardware
@@ -816,7 +850,8 @@ if __name__ == "__main__":
 - [ ] Power management system operational
 - [ ] Basic robot personality working on hardware
 
-**Phase 3 Completion Criteria:**
+#### Phase 3 Completion Criteria
+
 - [ ] Professional enclosure completed
 - [ ] All components properly assembled
 - [ ] Battery life >6 hours achieved
@@ -826,30 +861,34 @@ if __name__ == "__main__":
 
 ### Budget & Resource Planning
 
-**Development Costs (Realistic Estimates):**
-| Category | Phase 1 | Phase 2 | Phase 3 | Total |
-| :--- | :--- | :--- | :--- | :--- |
-| **Software/APIs** | ₹0 (free tier) | ₹0 | ₹0 | ₹0 |
-| **Hardware** | ₹0 | ₹6,500-8,500 | ₹1,500 | ₹8,000-10,000 |
-| **Tools** | ₹500 | ₹1,500 | ₹500 | ₹2,500 |
-| **3D Printing** | ₹0 | ₹0 | ₹800-1,200 | ₹800-1,200 |
-| **Total** | ₹500 | ₹8,000-10,000 | ₹2,300-2,700 | ₹10,800-13,200 |
+#### Development Costs (Realistic Estimates)
 
-**Time Investment (Hours per Week):**
-- **Beginner Developer:** 15-20 hours/week
-- **Intermediate Developer:** 10-15 hours/week
-- **Advanced Developer:** 8-12 hours/week
+| Category | Phase 1 | Phase 2 | Phase 3 | Total |
+|----------|---------|---------|---------|-------|
+| **Software/APIs** | ₹0 (free tier) | ₹0 | ₹0 | ₹0 |
+| **Hardware** | ₹0 | ₹6,500–8,500 | ₹1,500 | ₹8,000–10,000 |
+| **Tools** | ₹500 | ₹1,500 | ₹500 | ₹2,500 |
+| **3D Printing** | ₹0 | ₹0 | ₹800–1,200 | ₹800–1,200 |
+| **Total** | ₹500 | ₹8,000–10,000 | ₹2,300–2,700 | ₹10,800–13,200 |
+
+#### Time Investment (Hours per Week)
+
+- **Beginner Developer:** 15–20 hours/week
+- **Intermediate Developer:** 10–15 hours/week
+- **Advanced Developer:** 8–12 hours/week
 
 ### Critical Success Factors
 
-**✅ MUST DO:**
+#### ✅ MUST DO
+
 1. Complete Phase 1 simulation before buying hardware
 2. Test each component individually before integration
 3. Maintain detailed documentation throughout
 4. Regular backup of code and trained models
 5. Follow safety procedures for electronics work
 
-**❌ AVOID:**
+#### ❌ AVOID
+
 1. Purchasing hardware before software validation
 2. Skipping individual component testing
 3. Rushing through face recognition training
@@ -858,36 +897,257 @@ if __name__ == "__main__":
 
 ### Contingency Planning
 
-**If Behind Schedule:**
-- **Week 3-4:** Reduce AI features, focus on core functionality
-- **Week 8-9:** Use simpler hardware setup (ESP32-CAM)
-- **Week 11-12:** Use cardboard prototype instead of 3D printing
+#### If Behind Schedule
 
-**If Over Budget:**
+- **Week 3–4:** Reduce AI features, focus on core functionality
+- **Week 8–9:** Use simpler hardware setup (ESP32-CAM)
+- **Week 11–12:** Use cardboard prototype instead of 3D printing
+
+#### If Over Budget
+
 - Use ESP32-CAM + separate ESP32 instead of ESP32-S3-EYE
 - 3D print at home or use cardboard enclosure
 - Reduce battery capacity or use USB power only
 
-**If Technical Blocks:**
+#### If Technical Blocks
+
 - Active community support on Reddit r/esp32, Arduino forums
 - Espressif official documentation and examples
 - YouTube tutorials for specific components
 - Local maker spaces for hardware assistance
 
+### Resource Links & Community Support
+
+#### Official Documentation
+
+- **ESP32-S3-EYE:** [docs.espressif.com/projects/esp-idf](https://docs.espressif.com/projects/esp-idf)
+- **ESP-WHO Library:** [github.com/espressif/esp-who](https://github.com/espressif/esp-who)
+- **Google Cloud APIs:** [cloud.google.com/docs](https://cloud.google.com/docs)
+- **OpenCV:** [docs.opencv.org](https://docs.opencv.org)
+
+#### Community Forums
+
+- **Reddit:** r/esp32, r/embedded, r/robotics
+- **Discord:** ESP32 Community Server
+- **Stack Overflow:** [esp32] and [arduino] tags
+- **Arduino Forum:** forum.arduino.cc
+
+#### Video Tutorials
+
+- **Andreas Spiess:** ESP32 tutorials and reviews
+- **DroneBot Workshop:** ESP32 projects and programming
+- **GreatScott!:** Electronics and microcontroller projects
+- **Mert Arduino:** ESP32-CAM and AI projects
+
+### Troubleshooting Guide
+
+#### Common Issues & Solutions
+
+**1. Camera Not Working**
+- **Symptom:** No video feed or garbled images
+- **Solutions:**
+  - Check pin connections (SIOD, SIOC, VSYNC, HREF, PCLK, XCLK, D0-D7)
+  - Verify power supply (3.3V stable)
+  - Test with example code from ESP-WHO
+  - Check camera module is properly seated
+
+**2. Audio Quality Issues**
+- **Symptom:** Distorted or low-quality audio
+- **Solutions:**
+  - Verify MAX98357 I2S connections (BCLK, LRC, DIN)
+  - Check speaker impedance (4Ω or 8Ω)
+  - Adjust gain setting on MAX98357
+  - Reduce sample rate if needed (16kHz → 8kHz)
+
+**3. Face Recognition Failures**
+- **Symptom:** Low accuracy or false positives
+- **Solutions:**
+  - Retrain with more diverse lighting conditions
+  - Increase training dataset (30+ images)
+  - Adjust detection confidence threshold
+  - Ensure proper camera positioning
+
+**4. Memory Issues on ESP32**
+- **Symptom:** Crashes, reboots, or out-of-memory errors
+- **Solutions:**
+  - Enable PSRAM in Arduino IDE settings
+  - Reduce image resolution (QVGA instead of VGA)
+  - Optimize code to free unused memory
+  - Use external SPI flash for model storage
+
+**5. Battery Life Problems**
+- **Symptom:** Short runtime (<3 hours)
+- **Solutions:**
+  - Implement sleep modes when idle
+  - Reduce screen brightness
+  - Lower camera frame rate
+  - Use higher capacity battery (2500mAh+)
+
+**6. Google API Issues**
+- **Symptom:** Authentication errors or API failures
+- **Solutions:**
+  - Verify credentials.json is correctly configured
+  - Check API quota limits in Google Cloud Console
+  - Ensure billing is enabled for project
+  - Test with simple curl commands first
+
+### Performance Optimization Tips
+
+#### For PC Simulation
+
+1. **Reduce Webcam Resolution:** Use 640×480 instead of 1080p
+2. **Optimize Face Detection:** Process every 3rd frame instead of every frame
+3. **Cache API Responses:** Store common responses locally
+4. **Async Processing:** Use threading for non-blocking operations
+5. **Memory Management:** Clear unused objects and buffers
+
+#### For ESP32 Hardware
+
+1. **Enable PSRAM:** Essential for camera and AI operations
+2. **Reduce Model Size:** Use quantized or pruned models
+3. **Frame Rate Control:** 10-15 FPS is sufficient for face detection
+4. **WiFi Power Save:** Enable modem sleep when not transmitting
+5. **Code Optimization:** Use const, inline, and compiler optimizations
+
+### Testing Checklist
+
+#### Phase 1: PC Simulation Testing
+
+- [ ] Camera successfully captures video at 30 FPS
+- [ ] Face detection works in various lighting (bright, dim, backlit)
+- [ ] Face recognition identifies you with >90% accuracy
+- [ ] Voice recording captures clear audio
+- [ ] Speech-to-text transcribes accurately
+- [ ] Google Gemini provides relevant responses
+- [ ] Text-to-speech sounds natural and clear
+- [ ] State machine handles all transitions correctly
+- [ ] Error handling prevents crashes
+- [ ] Performance is smooth with <100ms latency
+
+#### Phase 2: Hardware Testing
+
+- [ ] ESP32-S3-EYE boots and connects to WiFi
+- [ ] Camera module captures clear images
+- [ ] Face detection runs at acceptable frame rate
+- [ ] OLED display shows correct expressions
+- [ ] Touch sensor responds to input
+- [ ] Speaker plays audio clearly
+- [ ] Microphone records clean audio
+- [ ] Battery charges and discharges properly
+- [ ] Power consumption within acceptable range
+- [ ] All components work together without conflicts
+
+#### Phase 3: Final Assembly Testing
+
+- [ ] Enclosure fits all components securely
+- [ ] No loose wires or components
+- [ ] Camera has clear view through enclosure
+- [ ] Microphone not obstructed
+- [ ] Speaker volume adequate
+- [ ] OLED display visible
+- [ ] Touch sensor accessible
+- [ ] Charging port accessible
+- [ ] Device survives drop test (30cm height)
+- [ ] Operates continuously for 6+ hours
+
+### Code Quality Standards
+
+#### Python Code Guidelines
+
+```python
+# Follow PEP 8 style guide
+# Use type hints for clarity
+def process_face(image: np.ndarray, threshold: float = 0.6) -> Optional[str]:
+    """
+    Process an image to detect and recognize faces.
+    
+    Args:
+        image: Input image as numpy array
+        threshold: Confidence threshold for recognition
+        
+    Returns:
+        Name of recognized person or None
+    """
+    pass
+
+# Use docstrings for all functions
+# Add error handling
+# Write unit tests for critical functions
+```
+
+#### C++/Arduino Code Guidelines
+
+```cpp
+// Use meaningful variable names
+const int TOUCH_SENSOR_PIN = 4;
+const int OLED_SDA_PIN = 21;
+const int OLED_SCL_PIN = 22;
+
+// Add comments for complex logic
+// Use const and constexpr where possible
+// Implement error checking
+// Free memory when done
+```
+
+### Documentation Requirements
+
+#### Code Documentation
+
+- **README.md:** Project overview, setup instructions
+- **INSTALL.md:** Detailed installation guide
+- **API.md:** API reference for custom functions
+- **CHANGELOG.md:** Version history and changes
+
+#### Hardware Documentation
+
+- **BOM.md:** Complete bill of materials with sources
+- **WIRING.md:** Pin connections and wiring diagrams
+- **ASSEMBLY.md:** Step-by-step assembly instructions
+- **TROUBLESHOOTING.md:** Common issues and solutions
+
 ### Final Recommendation
 
-**Start immediately with Phase 1** - the PC simulation requires no hardware investment and provides immediate learning value. The software-first approach dramatically reduces project risk and ensures you have a working AI system before committing to hardware costs.
+**Start immediately with Phase 1** — the PC simulation requires no hardware investment and provides immediate learning value. The software-first approach dramatically reduces project risk and ensures you have a working AI system before committing to hardware costs.
 
-**Total Realistic Timeline:** 10-13 weeks for complete project
-**Minimum Viable Product:** 6-8 weeks (basic functionality)
-**Budget Range:** ₹10,000-15,000 (including tools and contingencies)
+#### Realistic Timeline Summary
+
+- **Total Project Duration:** 10–13 weeks for complete project
+- **Minimum Viable Product:** 6–8 weeks (basic functionality)
+- **Budget Range:** ₹10,000–15,000 (including tools and contingencies)
+
+#### Expected Learning Outcomes
+
+By completing this project, you will gain expertise in:
+
+1. **Python Programming:** Advanced OOP, threading, async operations
+2. **Computer Vision:** Face detection/recognition with OpenCV
+3. **Audio Processing:** Speech recognition, text-to-speech
+4. **AI Integration:** Google Cloud APIs, Gemini AI
+5. **Embedded Systems:** ESP32 programming, hardware interfaces
+6. **Electronics:** Circuit design, soldering, power management
+7. **3D Design:** CAD modeling, 3D printing
+8. **State Machines:** Complex state management and transitions
+9. **Testing:** Unit tests, integration tests, system tests
+10. **Documentation:** Technical writing, user guides
+
+### Next Steps
+
+1. **Review this document thoroughly**
+2. **Set up your development environment (Task 1.1)**
+3. **Run hardware compatibility tests**
+4. **Begin emotion engine development (Task 1.2)**
+5. **Join relevant online communities for support**
+6. **Document your progress regularly**
+7. **Ask questions when stuck — don't struggle alone**
 
 ---
 
 ## Conclusion
 
-This comprehensive development plan provides a detailed, research-based roadmap for creating an advanced AI companion robot. The software-first methodology minimizes risk while maximizing learning opportunities. By following this structured approach, developers can create a sophisticated AI system with face recognition, voice interaction, and personality-driven responses.
+This comprehensive development plan provides a detailed, research-based roadmap for creating an advanced AI companion robot. The software-first methodology minimizes risk while maximizing learning opportunities. By following this structured approach, you can create a sophisticated AI system with face recognition, voice interaction, and personality-driven responses.
 
-The key to success is patience and methodical progression through each phase. Do not rush to hardware - the PC simulation phase is where the real AI magic happens, and it's the foundation for everything that follows.
+The key to success is patience and methodical progression through each phase. Do not rush to hardware — the PC simulation phase is where the real AI magic happens, and it's the foundation for everything that follows.
 
 **Ready to start? Begin with Task 1.1: Complete Development Environment Setup!**
+
+Good luck with your AI companion robot project! 🤖✨

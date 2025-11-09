@@ -1,24 +1,35 @@
 # Windows 11 Development Guide
 
+This guide covers setting up your Windows 11 development environment and understanding the robot's operating system architecture.
+
+---
+
 ## Development Environment Overview
 
 ### Phase 1: Windows 11 PC Development
+
 **Your Development Machine:** Windows 11 PC/Laptop
+
 - **Language:** Python 3.10+ for AI development and simulation
 - **IDE:** Visual Studio Code with Python extensions
 - **Hardware:** Your laptop's webcam, microphone, and speakers
 - **Purpose:** Develop and test 100% of AI functionality before buying robot hardware
 
 ### Phase 2: Robot Hardware OS
+
 **Robot's Operating System:** FreeRTOS (Real-Time Operating System)
+
 - **Platform:** ESP32-S3-EYE runs FreeRTOS (built into ESP-IDF)
 - **Language:** C++ (Arduino framework) for final robot code
 - **Memory:** 512KB SRAM + 8MB PSRAM + 16MB Flash
 - **Purpose:** Real-time robot operation with AI processing
 
+---
+
 ## Windows 11 Setup Process
 
 ### Step 1: Install Python Development Environment
+
 ```powershell
 # Open PowerShell as Administrator
 # Install Python 3.11 (recommended for Windows 11)
@@ -33,6 +44,7 @@ pip install pyaudio-windows-binaries
 ```
 
 ### Step 2: Install Visual Studio Code
+
 ```powershell
 # Install VS Code
 winget install Microsoft.VisualStudioCode
@@ -42,16 +54,17 @@ winget install Git.Git
 ```
 
 ### Step 3: Windows-Specific Library Installation
+
 ```powershell
 # Create project directory
-mkdir C:\AibiRobot
-cd C:\AibiRobot
+mkdir C:\PicoRobot
+cd C:\PicoRobot
 
 # Create virtual environment
-python -m venv aibi_env
+python -m venv pico_env
 
 # Activate environment (Windows)
-aibi_env\Scripts\activate
+pico_env\Scripts\activate
 
 # Install Windows-compatible versions
 pip install opencv-python==4.8.1.78
@@ -74,6 +87,7 @@ pip install matplotlib==3.7.2
 ```
 
 ### Step 4: Hardware Testing on Windows
+
 ```python
 # test_windows_hardware.py
 import cv2
@@ -130,9 +144,12 @@ if __name__ == "__main__":
     test_windows_compatibility()
 ```
 
+---
+
 ## Robot Operating System Details
 
 ### ESP32-S3 FreeRTOS Architecture
+
 ```cpp
 // Robot runs on FreeRTOS with these tasks:
 void setup() {
@@ -156,14 +173,18 @@ void loop() {
 ```
 
 ### Memory Management on Robot
+
 - **Program Storage:** 16MB Flash (stores your C++ code)
 - **Runtime Memory:** 512KB SRAM (fast access for running code)
 - **AI Models:** 8MB PSRAM (stores face recognition models)
 - **Operating System:** FreeRTOS (real-time multitasking)
 
+---
+
 ## Development Workflow: Windows → Robot
 
 ### Phase 1: Windows Development
+
 1. **Develop in Python** on your Windows 11 PC
 2. **Test with laptop hardware** (camera, mic, speakers)
 3. **Perfect AI algorithms** and personality engine
@@ -171,6 +192,7 @@ void loop() {
 5. **Validate complete system** before hardware purchase
 
 ### Phase 2: Code Translation
+
 1. **Install Arduino IDE** on Windows 11
 2. **Add ESP32-S3 board support** to Arduino IDE
 3. **Translate Python logic** to C++ Arduino code
@@ -178,6 +200,7 @@ void loop() {
 5. **Deploy final firmware** to robot
 
 ### Windows 11 Advantages for This Project
+
 - **Excellent Python support** with latest libraries
 - **Visual Studio Code** with best-in-class debugging
 - **Windows Subsystem for Linux (WSL)** if needed for Linux tools
@@ -185,9 +208,14 @@ void loop() {
 - **Google Cloud SDK** fully supported on Windows
 - **All development tools** available and well-supported
 
+---
+
 ## Troubleshooting Windows-Specific Issues
 
 ### Common Windows 11 Issues & Solutions
+
+#### Camera or Microphone Access Denied
+
 ```powershell
 # If camera access denied
 # Go to Settings > Privacy & Security > Camera
@@ -196,32 +224,45 @@ void loop() {
 # If microphone access denied  
 # Go to Settings > Privacy & Security > Microphone
 # Enable "Microphone access" and "Let apps access your microphone"
+```
 
+#### Python Package Installation Failures
+
+```powershell
 # If Python packages fail to install
 # Install Microsoft C++ Build Tools
 winget install Microsoft.VisualStudio.2022.BuildTools
+```
 
+#### OpenCV Issues
+
+```powershell
 # If OpenCV doesn't work
 pip uninstall opencv-python
 pip install opencv-python-headless==4.8.1.78
 ```
 
 ### Windows Firewall Configuration
+
 ```powershell
 # Allow Python through Windows Firewall (for Google APIs)
 netsh advfirewall firewall add rule name="Python" dir=in action=allow program="C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python311\python.exe"
 ```
 
+---
+
 ## Summary
 
-**✅ Windows 11 is Perfect for This Project:**
-- Complete development environment available
-- All required libraries work excellently
-- Visual Studio Code provides best development experience
-- Easy transition from Python development to Arduino C++ deployment
-- Robot runs on FreeRTOS (embedded real-time OS), not Windows
+### Windows 11 is Perfect for This Project
 
-**Development Flow:**
+✅ **Complete development environment available**  
+✅ **All required libraries work excellently**  
+✅ **Visual Studio Code provides best development experience**  
+✅ **Easy transition from Python development to Arduino C++ deployment**  
+✅ **Robot runs on FreeRTOS (embedded real-time OS), not Windows**
+
+### Development Flow
+
 1. **Windows 11 PC:** Develop AI in Python
 2. **ESP32-S3-EYE Robot:** Deploy as C++ firmware running on FreeRTOS
 3. **No Linux required:** Everything works natively on Windows 11

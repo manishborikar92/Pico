@@ -1,12 +1,15 @@
-# Document 4: Free-Tier Technology Stack & API Analysis
+# Free-Tier Technology Stack & API Analysis
 
 This document outlines the software stack for the robot's core AI functions: **Speech-to-Text (STT)**, **Natural Language Processing (NLP)**, **Text-to-Speech (TTS)**, **Computer Vision**, and **Face Recognition**. The primary goal is to use free or generous free-tier services.
 
 **Development Approach:** This project follows a **software-first methodology** where all AI capabilities are developed and tested in Python on a PC before porting to hardware.
 
-We will define two "stacks":
-* **The Online Stack (Recommended):** Uses cloud APIs. It is *vastly* more powerful, more accurate, and easier to implement, with generous free tiers that should be sufficient for prototyping.
-* **The Offline Stack (Advanced):** Uses on-device models. It is 100% free forever and works without Wi-Fi, but it is much less powerful and significantly more difficult to implement.
+We define two implementation approaches:
+
+- **The Online Stack (Recommended):** Uses cloud APIs. Vastly more powerful, more accurate, and easier to implement, with generous free tiers sufficient for prototyping.
+- **The Offline Stack (Advanced):** Uses on-device models. 100% free forever and works without Wi-Fi, but much less powerful and significantly more difficult to implement.
+
+---
 
 ## 1. Comprehensive Online AI Stack (Research-Verified)
 
@@ -15,18 +18,18 @@ We will define two "stacks":
 **IMPORTANT RESEARCH UPDATE:** API pricing and limitations have been thoroughly researched and verified.
 
 | Service Category | Recommended Provider | Detailed Specifications | Free Tier Limits (Verified) | Cost After Free Tier |
-| :--- | :--- | :--- | :--- | :--- |
-| **Speech-to-Text** | **Google Cloud Speech-to-Text** | 16kHz, 16-bit, multiple languages | **60 minutes/month** | $0.006/15-second increment |
-| **Natural Language** | **Google Gemini 1.5 Flash** | 1M token context, multimodal | **15 RPM, 1,500 RPD** | $0.075/1M input tokens |
-| **Text-to-Speech** | **Google Cloud TTS** | Neural voices, SSML support | **1M characters/month** | $4.00/1M characters |
-| **Computer Vision** | **OpenCV + MediaPipe** | Real-time face detection/landmarks | **Completely free** | Open source |
-| **Face Recognition** | **face_recognition library** | 128-dimensional face encodings | **Completely free** | Open source |
-| **Voice Identification** | **pyAudioAnalysis** | Speaker recognition, emotion detection | **Completely free** | Open source |
+|------------------|---------------------|------------------------|----------------------------|---------------------|
+| **Speech-to-Text** | Google Cloud Speech-to-Text | 16kHz, 16-bit, multiple languages | **60 minutes/month** | $0.006/15-second increment |
+| **Natural Language** | Google Gemini 1.5 Flash | 1M token context, multimodal | **15 RPM, 1,500 RPD** | $0.075/1M input tokens |
+| **Text-to-Speech** | Google Cloud TTS | Neural voices, SSML support | **1M characters/month** | $4.00/1M characters |
+| **Computer Vision** | OpenCV + MediaPipe | Real-time face detection/landmarks | **Completely free** | Open source |
+| **Face Recognition** | face_recognition library | 128-dimensional face encodings | **Completely free** | Open source |
+| **Voice Identification** | pyAudioAnalysis | Speaker recognition, emotion detection | **Completely free** | Open source |
 
 ### 1.2 Alternative Cloud Providers (Backup Options)
 
 | Provider | Service | Free Tier | Advantages | Limitations |
-| :--- | :--- | :--- | :--- | :--- |
+|----------|---------|-----------|------------|-------------|
 | **OpenAI** | GPT-4 Turbo | $5 credit (new users) | Superior reasoning | Limited free usage |
 | **Microsoft Azure** | Cognitive Services | 5,000 transactions/month | Enterprise integration | Complex pricing |
 | **Amazon AWS** | Polly/Transcribe | 12 months free tier | Robust infrastructure | AWS complexity |
@@ -34,7 +37,8 @@ We will define two "stacks":
 
 ### 1.3 Detailed API Integration Specifications
 
-**Google Speech-to-Text Configuration:**
+#### Google Speech-to-Text Configuration
+
 ```python
 import speech_recognition as sr
 from google.cloud import speech
@@ -50,7 +54,8 @@ config = speech.RecognitionConfig(
 )
 ```
 
-**Google Gemini API Integration:**
+#### Google Gemini API Integration
+
 ```python
 import google.generativeai as genai
 
@@ -59,7 +64,7 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 # System prompt for robot behavior
 system_prompt = """
-You are Aibi, a friendly AI companion robot. Respond in a warm, 
+You are Pico, a friendly AI companion robot. Respond in a warm, 
 helpful manner. Keep responses concise (under 50 words) unless 
 asked for detailed information. Show personality and emotion in 
 your responses.
@@ -74,7 +79,8 @@ response = model.generate_content(
 )
 ```
 
-**Google Text-to-Speech Configuration:**
+#### Google Text-to-Speech Configuration
+
 ```python
 from google.cloud import texttospeech
 
@@ -93,40 +99,44 @@ audio_config = texttospeech.AudioConfig(
 )
 ```
 
-**Enhanced Online Stack Workflow:**
-1.  **Vision System:** Camera continuously monitors for faces using OpenCV
-2.  **Face Recognition:** If face detected, identify if it's a known person using face_recognition library
-3.  **Personalized Greeting:** "Hello [Name]!" or "Hello there!" for unknown faces
-4.  **Voice Interaction:** User says "Aibi, what's 5 multiply by 4?"
-5.  **STT (Google):** `[Audio Stream]` -> `"What's 5 multiply by 4"` (Uses ~5 seconds of our 60-min/month quota)
-6.  **Voice Recognition:** Optionally identify the speaker's voice
-7.  **NLP/TTS (Gemini):** `"What's 5 multiply by 4"` -> **(One API Call)** -> Returns:
-    * `Text:` "5 multiplied by 4 is 20" (to check for IoT commands)
-    * `Audio:` `response_audio.mp3` (which we play directly on the speaker)
-    * (Uses 1 of our 1,000 requests/day quota)
+### 1.4 Enhanced Online Stack Workflow
+
+1. **Vision System:** Camera continuously monitors for faces using OpenCV
+2. **Face Recognition:** If face detected, identify if it's a known person using face_recognition library
+3. **Personalized Greeting:** "Hello [Name]!" or "Hello there!" for unknown faces
+4. **Voice Interaction:** User says "Pico, what's 5 multiply by 4?"
+5. **STT (Google):** `[Audio Stream]` → `"What's 5 multiply by 4"` (Uses ~5 seconds of our 60-min/month quota)
+6. **Voice Recognition:** Optionally identify the speaker's voice
+7. **NLP/TTS (Gemini):** `"What's 5 multiply by 4"` → **(One API Call)** → Returns:
+   - `Text:` "5 multiplied by 4 is 20" (to check for IoT commands)
+   - `Audio:` `response_audio.mp3` (which we play directly on the speaker)
+   - (Uses 1 of our 1,500 requests/day quota)
 
 ---
 
-### 2. "Offline" Stack (No Wi-Fi Required)
+## 2. Offline Stack (No Wi-Fi Required)
 
-This stack is for advanced users. It will *not* be able to answer "What is 5x4?" but it can understand "Turn on the light" locally and recognize faces.
+This stack is for advanced users. It cannot answer "What is 5×4?" but it can understand "Turn on the light" locally and recognize faces.
+
+### 2.1 Offline Technology Components
 
 | Task | Service | Recommendation & Analysis |
-| :--- | :--- | :--- |
-| **STT** (Ears) | **Vosk** or **ESP-SR** | **ESP-SR (Espressif Speech Recognition)** is the best choice. It's a library from the chip maker (Espressif) designed for the ESP32-S3. It can be trained to recognize a small set of commands (e.g., "turn on," "turn off," "light," "blue") 100% on the device. |
-| **NLP** (Brain)| **Hard-Coded `if/else`** | There is no "AI" in this stack. Your code must manually parse the text from ESP-SR. **Example:** `if (text == "turn on" && text.contains("light")) { ... }` |
-| **TTS** (Voice) | **PicoTTS** | **This is the best offline option.** There is a GitHub project that ports PicoTTS directly to the ESP32-S3. It uses ~1.1MB of RAM (which is why we need the PSRAM model). It will sound very robotic, but it's 100% free and offline. |
-| **Face Detection** (Eyes) | **ESP-WHO** | **Espressif's official solution.** The ESP-WHO library provides face detection models optimized for ESP32-S3. Runs entirely on-device with no internet required. |
-| **Face Recognition** (Memory) | **ESP-WHO + Custom Training** | **Advanced but possible.** ESP-WHO can be trained to recognize specific faces and store the models on the device. Limited to a small number of faces due to memory constraints. |
+|------|---------|--------------------------|
+| **STT** (Ears) | Vosk or ESP-SR | **ESP-SR (Espressif Speech Recognition)** is the best choice. It's a library from the chip maker (Espressif) designed for the ESP32-S3. It can be trained to recognize a small set of commands (e.g., "turn on," "turn off," "light," "blue") 100% on the device. |
+| **NLP** (Brain) | Hard-Coded `if/else` | There is no "AI" in this stack. Your code must manually parse the text from ESP-SR. **Example:** `if (text == "turn on" && text.contains("light")) { ... }` |
+| **TTS** (Voice) | PicoTTS | **This is the best offline option.** There is a GitHub project that ports PicoTTS directly to the ESP32-S3. It uses ~1.1MB of RAM (which is why we need the PSRAM model). It will sound robotic, but it's 100% free and offline. |
+| **Face Detection** (Eyes) | ESP-WHO | **Espressif's official solution.** The ESP-WHO library provides face detection models optimized for ESP32-S3. Runs entirely on-device with no internet required. |
+| **Face Recognition** (Memory) | ESP-WHO + Custom Training | **Advanced but possible.** ESP-WHO can be trained to recognize specific faces and store the models on the device. Limited to a small number of faces due to memory constraints. |
 
-**Enhanced Offline Stack Workflow:**
-1.  **Vision System:** ESP-WHO continuously monitors camera for faces
-2.  **Face Recognition:** If face detected, check against stored face models
-3.  **Local Greeting:** Display appropriate eyes on OLED based on recognition result
-4.  **Voice Interaction:** User says "Aibi, turn on the light."
-5.  **STT (ESP-SR):** `[Audio Stream]` -> `"turn on light"` (Recognized from its limited vocabulary)
-6.  **NLP (Your Code):** `if (text == "turn on light") { ... }` -> Triggers the IoT function
-7.  **TTS (PicoTTS):** Your code calls `pico.say("Okay")` -> Generates robotic "Okay" audio and plays it
+### 2.2 Enhanced Offline Stack Workflow
+
+1. **Vision System:** ESP-WHO continuously monitors camera for faces
+2. **Face Recognition:** If face detected, check against stored face models
+3. **Local Greeting:** Display appropriate eyes on OLED based on recognition result
+4. **Voice Interaction:** User says "Pico, turn on the light."
+5. **STT (ESP-SR):** `[Audio Stream]` → `"turn on light"` (Recognized from its limited vocabulary)
+6. **NLP (Your Code):** `if (text == "turn on light") { ... }` → Triggers the IoT function
+7. **TTS (PicoTTS):** Your code calls `pico.say("Okay")` → Generates robotic "Okay" audio and plays it
 
 ---
 
@@ -134,7 +144,8 @@ This stack is for advanced users. It will *not* be able to answer "What is 5x4?"
 
 ### 3.1 Python Development Stack (Detailed Installation Guide)
 
-**Core Development Environment:**
+#### Core Development Environment
+
 ```bash
 # Python 3.10+ installation verification
 python --version  # Should be 3.10 or higher
@@ -149,7 +160,8 @@ aibi_robot_env\Scripts\activate  # Windows
 pip install --upgrade pip setuptools wheel
 ```
 
-**Essential Libraries with Specific Versions:**
+#### Essential Libraries with Specific Versions
+
 ```bash
 # Computer Vision & AI
 pip install opencv-python==4.8.1.78
@@ -176,7 +188,8 @@ pip install pygame==2.5.2  # For audio playback alternatives
 
 ### 3.2 Advanced Computer Vision Setup
 
-**OpenCV Configuration for Face Detection:**
+#### OpenCV Configuration for Face Detection
+
 ```python
 import cv2
 import numpy as np
@@ -221,7 +234,8 @@ class FaceDetectionSystem:
         return faces
 ```
 
-**Face Recognition Training System:**
+#### Face Recognition Training System
+
 ```python
 import face_recognition
 import pickle
@@ -285,7 +299,8 @@ class FaceRecognitionTrainer:
 
 ### 3.3 Audio Processing & Voice Recognition
 
-**Advanced Audio Recording System:**
+#### Advanced Audio Recording System
+
 ```python
 import sounddevice as sd
 import soundfile as sf
@@ -337,7 +352,8 @@ class AudioProcessor:
 
 ### 3.4 Integrated Robot Simulation Framework
 
-**Complete Robot Personality Simulator:**
+#### Complete Robot Personality Simulator
+
 ```python
 import threading
 import time
@@ -503,7 +519,7 @@ class RobotSimulator:
         
     def run(self):
         """Start the robot simulation"""
-        print("🤖 Aibi Robot Simulator Starting...")
+        print("🤖 Pico Robot Simulator Starting...")
         self.display_eyes("idle")
         self.play_sound("startup")
         
@@ -515,7 +531,7 @@ class RobotSimulator:
         # Start keyboard input loop
         self.keyboard_input_loop()
         
-        print("🤖 Aibi Robot Simulator Stopped.")
+        print("🤖 Pico Robot Simulator Stopped.")
 
 # Usage
 if __name__ == "__main__":
@@ -523,21 +539,29 @@ if __name__ == "__main__":
     robot.run()
 ```
 
-### 4. Summary & Final Recommendation
+---
 
-**Follow the Software-First Approach:**
+## 4. Summary & Final Recommendation
 
-**Phase 1 - PC Development (Recommended Start):**
+### Follow the Software-First Approach
+
+#### Phase 1: PC Development (Recommended Start)
+
 Use Python on your PC with the "Development Stack" above. This allows you to:
-* Develop and test all AI logic without hardware investment
-* Use your laptop's webcam for face detection/recognition development
-* Use your laptop's mic and speakers for voice interaction
-* Simulate all robot behaviors and test the complete personality engine
 
-**Phase 2 - Hardware Implementation:**
+- Develop and test all AI logic without hardware investment
+- Use your laptop's webcam for face detection/recognition development
+- Use your laptop's mic and speakers for voice interaction
+- Simulate all robot behaviors and test the complete personality engine
+
+#### Phase 2: Hardware Implementation
+
 After Phase 1 is complete, implement the "Online Stack" on ESP32-S3-EYE hardware.
 
-**Hybrid Approach (Best of Both Worlds):**
-* **Offline:** Wake-word ("Aibi"), face detection, and basic commands work instantly with no Wi-Fi
-* **Online:** Complex questions and conversations connect to Google APIs
-* **Personal Recognition:** Face and voice recognition work both online and offline
+### Hybrid Approach (Best of Both Worlds)
+
+- **Offline:** Wake-word ("Pico"), face detection, and basic commands work instantly with no Wi-Fi
+- **Online:** Complex questions and conversations connect to Google APIs
+- **Personal Recognition:** Face and voice recognition work both online and offline
+
+This hybrid approach provides the optimal balance between functionality, privacy, and reliability.
