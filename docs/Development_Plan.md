@@ -1,8 +1,15 @@
-# Comprehensive Development Plan for AI Companion Robot
+# Comprehensive Development Plan for Pico - The AI Desktop Pet
 
 ## Project Philosophy
 
 **Software-First Approach:** Develop and test 90% of the robot's intelligence in Python on your PC before purchasing any hardware. This approach enables rapid development, easy debugging, and ensures the AI logic is solid before any hardware investment.
+
+**Important Note:** Pico is designed as a **non-verbal pet companion**. Unlike traditional smart assistants, Pico does NOT use text-to-speech. Instead, it communicates through:
+- **Expressive sounds** (chirps, purrs, whistles stored as .wav files)
+- **Animated eyes** on OLED display (e.g., `^.^`, `o.O`, `-.-`)
+- **Head movements** via 2-axis servos (nod, shake, look up/down)
+
+This creates a more pet-like, emotionally engaging interaction experience similar to R2-D2 or Pokemon.
 
 ### Development Phases
 
@@ -57,8 +64,8 @@ pip install librosa==0.10.1
 
 # Google Cloud APIs
 pip install google-cloud-speech==2.21.0
-pip install google-cloud-texttospeech==2.16.3
 pip install google-generativeai==0.3.2
+# Note: No TTS library needed - Pico uses pre-recorded sounds
 
 # Utilities
 pip install requests==2.31.0
@@ -162,7 +169,7 @@ gcloud config set project aibi-robot-project
 
 # Enable required APIs
 gcloud services enable speech.googleapis.com
-gcloud services enable texttospeech.googleapis.com
+# Note: No TTS API needed - Pico uses pre-recorded sounds
 ```
 
 **Step 5: Project Structure Setup**
@@ -358,8 +365,8 @@ class EmotionEngine:
         
     def _on_responding(self, data):
         self.display_eyes("responding")
-        if data and 'response_text' in data:
-            self.speak_text(data['response_text'])
+        # Pico responds with sounds, not speech
+        self.play_sound("happy")
         
     def _on_confused(self, data):
         self.display_eyes("confused")
@@ -369,7 +376,7 @@ class EmotionEngine:
         
     def _on_low_battery(self, data):
         self.display_eyes("low_battery")
-        self.speak_text("My battery is getting low. Please charge me soon.")
+        self.play_sound("low_battery")  # Plays tired/yawn sound
         
     def _on_error(self, data):
         self.display_eyes("error")
@@ -408,9 +415,9 @@ class EmotionEngine:
         sound_text = sounds.get(sound_type, f"♪ {sound_type} ♪")
         print(f"[SPEAKER]: {sound_text}")
         
-    def speak_text(self, text: str):
-        """Simulate text-to-speech output"""
-        print(f"[TTS]: '{text}'")
+    def move_head(self, pan_angle: int, tilt_angle: int):
+        """Simulate head servo movement"""
+        print(f"[HEAD MOVEMENT]: Pan={pan_angle}°, Tilt={tilt_angle}°")
         
     def get_state_info(self):
         """Get current state information"""
@@ -639,15 +646,202 @@ if __name__ == "__main__":
 - All unit tests pass
 - Interactive simulation runs smoothly
 
-#### Task 1.3: Integrate Cloud AI
+#### Task 1.3: Create Sound Bank
+
+**Goal:** Create PICO's complete non-verbal sound library for pet-like communication.
+
+**Step 1: Set Up Sound Creation Environment**
+
+```bash
+# Install Audacity (free audio editor)
+# Windows: Download from audacityteam.org
+# macOS: brew install audacity
+# Linux: sudo apt install audacity
+
+# Install Python audio libraries
+pip install soundfile==0.12.1
+pip install numpy==1.24.3
+```
+
+**Step 2: Create Priority 1 Sounds (Essential - 12 sounds)**
+
+Create the minimum viable sound bank following the Sound_Bank_Guide.md:
+
+**Emotional Sounds (6 files):**
+1. `happy_chirp_01.wav` - Rising pitch, cheerful beep (0.5s)
+2. `curious_hum_01.wav` - Wavering tone, questioning (0.8s)
+3. `sad_whimper_01.wav` - Descending pitch, low frequency (1.0s)
+4. `excited_whistle_01.wav` - Fast, high-pitched sequence (0.6s)
+5. `loved_purr_01.wav` - Continuous rumbling, warm (2.0s)
+6. `sleepy_yawn_01.wav` - Slow, fading, descending (1.5s)
+
+**Reaction Sounds (6 files):**
+7. `listening_bing.wav` - Clear acknowledgment tone (0.3s)
+8. `acknowledgment_chirp.wav` - "Understood" confirmation (0.4s)
+9. `success_ding.wav` - Bright, ascending completion sound (0.5s)
+10. `error_buzz.wav` - Low, dissonant warning (0.7s)
+11. `greeting_beep.wav` - Friendly hello tone (0.5s)
+12. `startup_beep.wav` - Boot sequence melody (1.0s)
+
+**Step 3: Sound Creation Methods**
+
+Choose one or more methods:
+
+**Method A: Bfxr (Easiest - Web-based)**
+```
+1. Open https://www.bfxr.net/ in browser
+2. Click preset (e.g., "Pickup/Coin" for happy sounds)
+3. Adjust frequency, slide, and duration
+4. Export as WAV
+5. Process in Audacity
+```
+
+**Method B: Voice Modulation (Most Expressive)**
+```
+1. Record yourself making sounds ("bee-boop!", "hmm?", "aww")
+2. In Audacity:
+   - Effect > Change Pitch: +800-1200%
+   - Effect > Change Speed: +25-50%
+   - Effect > Equalization: Boost 800-2000Hz
+3. Trim to desired length
+4. Normalize to -3dB
+```
+
+**Method C: Free Sound Libraries**
+```
+1. Search Freesound.org for "robot beep", "electronic chirp"
+2. Download Creative Commons sounds
+3. Edit in Audacity to fit PICO's character
+4. Document sources in ATTRIBUTION.md
+```
+
+**Step 4: Universal Processing Pipeline**
+
+Process every sound through these steps in Audacity:
+
+```
+1. Import & Trim (0.3-3.0 seconds)
+2. Noise Reduction (if recorded)
+3. EQ: High-pass @ 200Hz, boost 800-2000Hz
+4. Compressor: -12dB threshold, 3:1 ratio
+5. Normalize to -3dB
+6. Convert to Mono
+7. Resample to 16kHz
+8. Export as WAV (16-bit PCM)
+```
+
+**Step 5: Organize Sound Files**
+
+```bash
+# Create sound bank directory structure
+mkdir -p assets/sounds/emotional
+mkdir -p assets/sounds/reactions
+mkdir -p assets/sounds/ambient
+mkdir -p assets/sounds/test
+
+# Move files to appropriate folders
+# emotional/: happy_chirp_01.wav, curious_hum_01.wav, etc.
+# reactions/: listening_bing.wav, success_ding.wav, etc.
+# ambient/: startup_beep.wav, thinking_hum.wav
+```
+
+**Step 6: Create Verification Script**
+
+```python
+# tools/verify_sounds.py
+import soundfile as sf
+import os
+
+def verify_sound_files(sounds_dir='assets/sounds/'):
+    """Verify all sound files meet specifications"""
+    issues = []
+    
+    for root, dirs, files in os.walk(sounds_dir):
+        for file in files:
+            if file.endswith('.wav'):
+                path = os.path.join(root, file)
+                data, samplerate = sf.read(path)
+                duration = len(data) / samplerate
+                channels = 1 if len(data.shape) == 1 else data.shape[1]
+                
+                # Check specifications
+                if samplerate != 16000:
+                    issues.append(f"❌ {file}: Wrong sample rate")
+                if channels != 1:
+                    issues.append(f"❌ {file}: Not mono")
+                if duration > 3.0:
+                    issues.append(f"⚠️ {file}: Too long")
+                    
+                if not issues:
+                    print(f"✅ {file}: OK ({duration:.2f}s)")
+    
+    return len(issues) == 0
+
+if __name__ == "__main__":
+    if verify_sound_files():
+        print("\n✅ All sounds verified!")
+    else:
+        print("\n⚠️ Some sounds need fixing")
+```
+
+**Step 7: Test Sound Playback**
+
+```python
+# test_sound_playback.py
+import sounddevice as sd
+import soundfile as sf
+import os
+
+def test_all_sounds():
+    """Test playback of all sound files"""
+    sounds_dir = 'assets/sounds/'
+    
+    for root, dirs, files in os.walk(sounds_dir):
+        for file in sorted(files):
+            if file.endswith('.wav'):
+                path = os.path.join(root, file)
+                print(f"\nPlaying: {file}")
+                data, samplerate = sf.read(path)
+                sd.play(data, samplerate)
+                sd.wait()
+                input("Press Enter for next sound...")
+
+if __name__ == "__main__":
+    test_all_sounds()
+```
+
+**Step 8: Create Documentation Files**
+
+```bash
+# Create assets/sounds/README.md
+# Document sound bank structure and usage
+
+# Create assets/sounds/ATTRIBUTION.md
+# Credit sources for third-party sounds
+```
+
+**✅ Success Criteria:**
+
+- 12 Priority 1 sounds created and verified
+- All sounds meet technical specifications (16kHz, mono, 16-bit, <3s)
+- Sounds organized in correct directory structure
+- Verification script passes all checks
+- Test playback script works correctly
+- README.md and ATTRIBUTION.md created
+- Sounds convey clear emotions without words
+- No annoying or harsh frequencies
+
+**📚 Reference:** See `docs/Sound_Bank_Guide.md` for complete creation guide with detailed examples and best practices.
+
+#### Task 1.4: Integrate Cloud AI
 
 - **Step 1:** Set up Google Gemini API credentials
 - **Step 2:** Implement voice recording using your laptop's microphone
 - **Step 3:** Integrate Google STT API to convert speech to text
 - **Step 4:** Send text to Gemini API for intelligent responses
-- **Step 5:** Use Google TTS API or Gemini's audio response to generate speech
-- **Step 6:** Play audio responses through your laptop's speakers
-- **✅ Success:** You can talk to your "pet" through your laptop. Say "What's 5×4?" and it answers out loud. Press 't' and it prints `[EYES]: Purring...`
+- **Step 5:** Map Gemini's response to appropriate sound effects from Sound Bank (chirp for acknowledgment, confused sound for errors)
+- **Step 6:** Play sound effects through your laptop's speakers using sounddevice library
+- **✅ Success:** You can talk to your "pet" through your laptop. Say "What's 5×4?" and it responds with acknowledgment chirp sound. Press 't' and it prints `[EYES]: Purring...` and plays purr sound from Sound Bank
 
 ---
 
@@ -702,8 +896,8 @@ if __name__ == "__main__":
 **⚠️ Only proceed after completing Phase 1 successfully**
 
 - **Step 1:** Purchase ESP32-S3-EYE development board
-- **Step 2:** Purchase remaining components from Hardware BoM (Document 3):
-  - OLED screen, MAX98357 amp, speaker, TP4056, battery, touch sensor
+- **Step 2:** Purchase remaining components from Hardware BoM (Hardware.md):
+  - OLED screen, MAX98357 amp, speaker, TP4056, battery, touch sensor, 2x SG90 servos
   - Note: Microphone is built into the ESP32-S3-EYE board
 - **Step 3:** Acquire breadboard and jumper wires for prototyping
 - **✅ Success:** All hardware components acquired and ready for development
@@ -715,6 +909,8 @@ if __name__ == "__main__":
 - **Step 3:** Rewrite Python logic in C++/Arduino:
   - `print("[EYES]: Happy")` → `oled.drawBitmap(...)`
   - `input()` keyboard simulation → `digitalRead(TOUCH_PIN)`
+  - `play_sound()` → I2S audio playback
+  - `move_head()` → `servo.write(angle)`
   - Python API calls → C++ `HTTPClient` requests
 - **Step 4:** Test each component individually before integration
 - **✅ Success:** Hardware components respond correctly to C++ code
@@ -813,7 +1009,7 @@ if __name__ == "__main__":
 **1. Google API Integration (Week 3)**
 - **Risk:** API authentication failures, quota limits
 - **Mitigation:** Test with small requests, implement fallbacks
-- **Backup Plan:** Use offline alternatives (Vosk, local TTS)
+- **Backup Plan:** Use offline alternatives (Vosk for STT, pre-recorded sounds always work offline)
 
 **2. Face Recognition Training (Week 4)**
 - **Risk:** Poor accuracy, lighting sensitivity
@@ -1019,7 +1215,7 @@ if __name__ == "__main__":
 - [ ] Voice recording captures clear audio
 - [ ] Speech-to-text transcribes accurately
 - [ ] Google Gemini provides relevant responses
-- [ ] Text-to-speech sounds natural and clear
+- [ ] Sound effects play correctly (chirps, purrs, whistles)
 - [ ] State machine handles all transitions correctly
 - [ ] Error handling prevents crashes
 - [ ] Performance is smooth with <100ms latency
@@ -1121,7 +1317,7 @@ By completing this project, you will gain expertise in:
 
 1. **Python Programming:** Advanced OOP, threading, async operations
 2. **Computer Vision:** Face detection/recognition with OpenCV
-3. **Audio Processing:** Speech recognition, text-to-speech
+3. **Audio Processing:** Speech recognition, sound effect playback
 4. **AI Integration:** Google Cloud APIs, Gemini AI
 5. **Embedded Systems:** ESP32 programming, hardware interfaces
 6. **Electronics:** Circuit design, soldering, power management

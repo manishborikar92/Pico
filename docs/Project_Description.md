@@ -1,14 +1,14 @@
-# Project PICO: AI-Powered Companion Robot
+# Project PICO: The AI Desktop Pet
 
 ## Project Overview
 
 ### Project Title
 
-**Project Pico (Unofficial)**: A Cost-Effective, AI-Powered Companion Robot with Advanced Vision and Voice Recognition
+**Project Pico**: An Intelligent, Emotionally Responsive Desktop Companion Robot
 
 ### Project Vision
 
-Create an intelligent, emotionally responsive, and interactive "pocket pet" robot that serves as a helpful companion with advanced AI capabilities. The project's core philosophy is **maximum functionality at minimal cost**, prioritizing open-source software and low-cost hardware to make cutting-edge AI technology accessible to makers, hobbyists, and developers worldwide.
+Pico is an intelligent, emotionally responsive desktop companion robot. Unlike smart speakers (like Alexa) that just answer questions, Pico behaves like a living pet (like a dog, cat, or a creature like Pokemon). It's a non-verbal AI companion that communicates through expressive sounds, animated eyes, and head movements.
 
 **Key Innovation:** This project introduces a revolutionary **software-first development methodology** that allows complete AI system development and testing on a PC before any hardware investment, dramatically reducing development risk and cost.
 
@@ -16,51 +16,80 @@ Create an intelligent, emotionally responsive, and interactive "pocket pet" robo
 
 ## Core Concept & Architecture
 
+### Key Personality Traits
+
+- **Non-Verbal**: Pico understands what you say but replies only with sounds (chirps, hums, whistles) and expressions. It does not speak human language.
+- **Emotionally Aware**: Pico has moods. It gets happy when it sees you, curious when it hears a noise, and sleepy when left alone.
+- **Interactive**: It sees you (Vision), hears you (Audio), and feels touch (Sensors).
+- **Stationary but Expressive**: Pico sits on your desk. It cannot walk, but it has a moving head to look at you, nod, or shake its head "no."
+
 ### Physical Design
 
-The robot consists of a compact, modular "head" unit (approximately 8cm × 6cm × 4cm) that houses all intelligence components:
+The robot consists of a compact desktop unit that houses all intelligence components:
 
 **Core Components:**
 - **ESP32-S3-EYE** board with integrated 2MP camera and digital microphone
-- **0.96" OLED display** for expressive "eyes" and status information
-- **Compact speaker system** with digital amplifier for clear audio output
-- **Rechargeable LiPo battery** (500–1000mAh) for 4–8 hours of operation
+- **0.96" OLED display** for expressive animated "eyes"
+- **Compact speaker system** with digital amplifier for sound effects and chirps
+- **2x SG90 Micro Servos** for 2-axis head movement (Pan/Tilt)
+- **Rechargeable LiPo battery** (500–1000mAh) for 6–8 hours of operation
 - **Touch-sensitive surface** for physical interaction
-- **Motion sensors** for orientation and movement detection
+- **3D-printed enclosure** for professional appearance
 
-**Modular Base System:**
+### Communication & Expression
 
-The head unit magnetically attaches to various bases:
-- **Charging dock** for stationary use and power management
-- **Wearable clip** for portable companion functionality
-- **Desktop stand** for workspace interaction
+Since Pico doesn't talk, its personality comes from three outputs working together:
+
+#### The Eyes (OLED Screen)
+
+Simple, animated shapes that convey emotion:
+- **Idle**: `( o o )` (Blinking occasionally)
+- **Happy**: `( ^ . ^ )` or `( > < )`
+- **Curious**: `( ? . ? )` or One eye big, one small `( O . o )`
+- **Sleeping**: `( - . - )` or `( U . U )`
+- **Listening**: `( @ . @ )` (Swirling animation)
+- **Love**: `( ♥ . ♥ )`
+
+#### The Voice (Sound Bank)
+
+A collection of `.wav` files stored on the robot:
+- **Greeting**: Happy chirps, whistles (like R2-D2)
+- **Agreement**: Short, rising hum ("Mm-hmm!")
+- **Confusion**: Lower, tilted sound ("Huuuh?")
+- **Sad/Scolded**: Low whimper or drop in pitch
+- **Purring**: Low rumble when touched
+
+#### The Movement (Head Servos)
+
+Two small motors (servos) allowing the head to move:
+- **Pan Servo (Left/Right)**: Shake head "No", Track your face
+- **Tilt Servo (Up/Down)**: Nod "Yes", Look up (Happy), Look down (Sad/Sleepy)
 
 ### AI Capabilities
 
-This is a **"voice and vision-first"** AI companion with advanced recognition capabilities:
+This is a **"pet-like"** AI companion with vision and voice understanding:
 
 #### Vision System
 
-- Continuous face detection and recognition using computer vision
-- Personal identification with customizable greetings
+- Continuous face detection using computer vision
+- Personal identification with customizable reactions
+- Motion detection for curiosity triggers
 - Privacy-aware operation with configurable camera settings
-- Real-time emotion detection and response
 
 #### Voice System
 
-- Always-listening wake-word detection ("Aibi" or customizable)
+- Always-listening wake-word detection ("Pico" or customizable)
 - Advanced speech-to-text with cloud API integration
-- Natural language understanding for complex queries
-- Personalized text-to-speech responses
-- Optional speaker identification for multi-user environments
+- Natural language understanding via Google Gemini
+- **No Text-to-Speech** - responds with sounds and expressions only
 
-#### Intelligence Engine
+#### Intelligence Engine (The Emotion Engine)
 
-- Cloud-connected AI for complex reasoning and conversation
-- Local processing for privacy-sensitive operations
-- IoT integration for smart home control
-- Adaptive personality that learns user preferences
-- Contextual memory for ongoing conversations
+- State machine with emotional states: `IDLE`, `HAPPY`, `CURIOUS`, `SLEEPY`, `LISTENING`, `CONFUSED`, `OBEDIENT`, `LOVED`
+- Cloud-connected AI (Google Gemini) for understanding commands
+- Local processing for fast face detection
+- Touch sensor integration for physical interaction
+- Contextual reactions based on current state
 
 ---
 
@@ -119,7 +148,7 @@ This is a **"voice and vision-first"** AI companion with advanced recognition ca
 
 - **Google Gemini API:** Advanced reasoning and conversation (1,000 requests/day free)
 - **Google Speech-to-Text:** High-accuracy transcription (60 minutes/month free)
-- **Google Text-to-Speech:** Natural voice synthesis with emotion
+- **Sound Bank:** Pre-recorded .wav files for pet-like communication
 - **OpenCV:** Local computer vision processing
 - **ESP-WHO:** On-device face recognition for privacy
 

@@ -92,7 +92,7 @@ aibi-robot-project/
 │   │   ├── 📁 ai/                     # AI and machine learning
 │   │   │   ├── 📄 __init__.py
 │   │   │   ├── 📄 cloud-integration.py # Google Cloud APIs
-│   │   │   ├── 📄 speech-processing.py # STT/TTS functionality
+│   │   │   ├── 📄 speech-processing.py # STT functionality
 │   │   │   ├── 📄 nlp-processor.py    # Natural language processing
 │   │   │   └── 📄 conversation-manager.py # Conversation context
 │   │   │
