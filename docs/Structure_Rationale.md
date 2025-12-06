@@ -25,7 +25,7 @@ This document provides a comprehensive analysis and synthesis of two project str
 Based on the analysis, here is the recommended unified structure that combines the best of both approaches:
 
 ```
-aibi-robot-project/
+pico-robot-project/
 ├── 📁 .git/                           # Git version control
 ├── 📁 .github/                        # GitHub workflows and templates
 │   ├── 📁 workflows/                  # CI/CD automation

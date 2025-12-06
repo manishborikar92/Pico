@@ -61,7 +61,7 @@ The PICO Robot project is a sophisticated AI-powered robotic system that require
 ## High-Level Structure
 
 ```
-aibi-robot/
+pico-robot/
 ├── .git/                    # Git version control
 ├── docs/                    # Documentation and guides
 ├── simulation/              # PC-based simulation environment
@@ -430,8 +430,8 @@ configs/
 
 2. **Clone Repository:**
    ```powershell
-   git clone https://github.com/your-org/aibi-robot.git
-   cd aibi-robot
+   git clone https://github.com/your-org/pico-robot.git
+   cd pico-robot
    ```
 
 3. **Run Setup Script:**
@@ -460,8 +460,8 @@ configs/
 
 2. **Clone Repository:**
    ```bash
-   git clone https://github.com/your-org/aibi-robot.git
-   cd aibi-robot
+   git clone https://github.com/your-org/pico-robot.git
+   cd pico-robot
    ```
 
 3. **Run Setup Script:**

@@ -164,8 +164,8 @@ gcloud auth login
 gcloud auth application-default login
 
 # Set up project (free tier)
-gcloud projects create aibi-robot-project
-gcloud config set project aibi-robot-project
+gcloud projects create pico-robot-project
+gcloud config set project pico-robot-project
 
 # Enable required APIs
 gcloud services enable speech.googleapis.com
@@ -175,7 +175,7 @@ gcloud services enable speech.googleapis.com
 **Step 5: Project Structure Setup**
 
 ```
-aibi_robot/
+pico_robot/
 ├── src/
 │   ├── __init__.py
 │   ├── robot_core.py          # Main robot class

@@ -305,7 +305,7 @@ Absolutely! The project is designed for collaboration across multiple platforms.
 
 ```powershell
 # Multiple developers can work on same project
-git clone https://github.com/team/aibi-robot.git
+git clone https://github.com/team/pico-robot.git
 git checkout -b feature/voice-recognition
 # Make changes
 git commit -m "Add voice recognition feature"

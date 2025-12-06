@@ -158,10 +158,10 @@ This stack is for advanced users. It cannot answer "What is 5×4?" but it can un
 python --version  # Should be 3.10 or higher
 
 # Create virtual environment for project isolation
-python -m venv aibi_robot_env
-source aibi_robot_env/bin/activate  # Linux/Mac
+python -m venv pico_robot_env
+source pico_robot_env/bin/activate  # Linux/Mac
 # OR
-aibi_robot_env\Scripts\activate  # Windows
+pico_robot_env\Scripts\activate  # Windows
 
 # Install core dependencies
 pip install --upgrade pip setuptools wheel
