@@ -34,7 +34,7 @@ pico-robot-project/
 │
 ├── 📄 .gitignore                      # Git ignore patterns
 ├── 📄 README.md                       # Project overview and quick start
-├── 📄 LICENSE                         # Open source license
+├── 📄 LICENSE                         # Project license
 ├── 📄 CHANGELOG.md                    # Version history and updates
 ├── 📄 CONTRIBUTING.md                 # Contribution guidelines
 │

@@ -193,9 +193,9 @@ This prototype is designed for developers who want to:
 - Robotics club projects and competitions
 - Research platform for human-robot interaction studies
 
-#### Open Source Community
+#### Development Community
 
-- Base platform for community-driven AI companion development
+- Reference implementation for AI companion development
 - Reference implementation for ESP32-S3 AI applications
 - Modular design allowing custom feature additions
 - Documentation and tutorials for knowledge sharing
