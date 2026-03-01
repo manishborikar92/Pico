@@ -1000,11 +1000,11 @@ Total Bundle Size:        < 250KB (initial JS, gzipped)
 ```javascript
 // src/app/layout.js
 export const metadata = {
-  title: 'Project PICO — AI Desktop Companion Robot',
+  title: 'Project PICO - AI Desktop Companion Robot',
   description: 'Build an emotionally responsive AI companion robot that sees, hears, and reacts like a pet. Open-source, ESP32-S3 based, software-first development.',
   keywords: ['AI robot', 'ESP32', 'companion robot', 'desktop pet', 'face recognition', 'maker project'],
   openGraph: {
-    title: 'Project PICO — AI Desktop Companion Robot',
+    title: 'Project PICO - AI Desktop Companion Robot',
     description: 'A non-verbal AI companion that communicates through expressions, sounds, and movement.',
     image: '/og-image.png', // 1200×630px image with the PICO face
     type: 'website',

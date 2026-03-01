@@ -81,7 +81,14 @@ export default function Footer() {
                         © {new Date().getFullYear()} Project PICO. Open source, built to inspire.
                     </p>
                     <p className="text-caption text-ink-muted">
-                        Built with Next.js, Tailwind CSS, Framer Motion
+                        <a
+                            href="https://www.vaelix.in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-periwinkle transition-colors underline underline-offset-2"
+                        >
+                            A Product by Vaelix
+                        </a>
                     </p>
                 </div>
             </div>
