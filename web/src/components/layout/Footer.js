@@ -78,7 +78,7 @@ export default function Footer() {
                 {/* Bottom strip */}
                 <div className="mt-12 pt-6 border-t border-warm-gray-mid flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-caption text-ink-muted">
-                        © {new Date().getFullYear()} Project PICO.
+                        © {new Date().getFullYear()} Pico. All rights reserved.
                     </p>
                     <p className="text-caption text-ink-muted">
                         <a
