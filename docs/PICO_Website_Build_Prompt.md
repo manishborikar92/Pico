@@ -370,7 +370,7 @@ Dynamic page that:
 Clean editorial layout, max-width 720px, centered. Sections:
 1. Hero: large heading "About Project PICO" with a short paragraph
 2. The Project Origin: 2–3 paragraphs about the motivation and methodology
-3. Open Source: license information, contribution guidelines link
+3. Project Information: license information, project details
 4. The Tech Philosophy: the software-first development ethos
 5. Get Involved: GitHub link button and community links
 

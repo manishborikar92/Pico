@@ -305,7 +305,7 @@ pico-robot.dev/
 │   ├── /docs/windows-guide
 │   └── /docs/faq
 │
-└── /about                ← Project background & open source info
+└── /about                ← Project background & project info
 ```
 
 ### Navigation Strategy
