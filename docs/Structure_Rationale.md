@@ -25,7 +25,7 @@ This document provides a comprehensive analysis and synthesis of two project str
 Based on the analysis, here is the recommended unified structure that combines the best of both approaches:
 
 ```
-aibi-robot-project/
+pico-robot-project/
 ├── 📁 .git/                           # Git version control
 ├── 📁 .github/                        # GitHub workflows and templates
 │   ├── 📁 workflows/                  # CI/CD automation
@@ -92,7 +92,7 @@ aibi-robot-project/
 │   │   ├── 📁 ai/                     # AI and machine learning
 │   │   │   ├── 📄 __init__.py
 │   │   │   ├── 📄 cloud-integration.py # Google Cloud APIs
-│   │   │   ├── 📄 speech-processing.py # STT/TTS functionality
+│   │   │   ├── 📄 speech-processing.py # STT functionality
 │   │   │   ├── 📄 nlp-processor.py    # Natural language processing
 │   │   │   └── 📄 conversation-manager.py # Conversation context
 │   │   │

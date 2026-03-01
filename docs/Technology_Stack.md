@@ -1,6 +1,8 @@
 # Free-Tier Technology Stack & API Analysis
 
-This document outlines the software stack for the robot's core AI functions: **Speech-to-Text (STT)**, **Natural Language Processing (NLP)**, **Text-to-Speech (TTS)**, **Computer Vision**, and **Face Recognition**. The primary goal is to use free or generous free-tier services.
+This document outlines the software stack for the robot's core AI functions: **Speech-to-Text (STT)**, **Natural Language Processing (NLP)**, **Sound Effects**, **Computer Vision**, and **Face Recognition**. The primary goal is to use free or generous free-tier services.
+
+**Important:** Pico is a non-verbal pet companion and does NOT use Text-to-Speech (TTS). It communicates through pre-recorded sound effects like chirps, purrs, and whistles.
 
 **Development Approach:** This project follows a **software-first methodology** where all AI capabilities are developed and tested in Python on a PC before porting to hardware.
 
@@ -21,7 +23,7 @@ We define two implementation approaches:
 |------------------|---------------------|------------------------|----------------------------|---------------------|
 | **Speech-to-Text** | Google Cloud Speech-to-Text | 16kHz, 16-bit, multiple languages | **60 minutes/month** | $0.006/15-second increment |
 | **Natural Language** | Google Gemini 1.5 Flash | 1M token context, multimodal | **15 RPM, 1,500 RPD** | $0.075/1M input tokens |
-| **Text-to-Speech** | Google Cloud TTS | Neural voices, SSML support | **1M characters/month** | $4.00/1M characters |
+| **Sound Effects** | Pre-recorded .wav files | Pet-like sounds (chirps, purrs, whistles) | **Completely free** | No cloud service needed |
 | **Computer Vision** | OpenCV + MediaPipe | Real-time face detection/landmarks | **Completely free** | Open source |
 | **Face Recognition** | face_recognition library | 128-dimensional face encodings | **Completely free** | Open source |
 | **Voice Identification** | pyAudioAnalysis | Speaker recognition, emotion detection | **Completely free** | Open source |
@@ -79,25 +81,30 @@ response = model.generate_content(
 )
 ```
 
-#### Google Text-to-Speech Configuration
+#### Sound Bank Configuration (No TTS)
 
 ```python
-from google.cloud import texttospeech
+import pygame
 
-# Optimal voice settings for robot
-voice = texttospeech.VoiceSelectionParams(
-    language_code="en-US",
-    name="en-US-Neural2-F",  # Friendly female voice
-    ssml_gender=texttospeech.SsmlVoiceGender.FEMALE
-)
-
-audio_config = texttospeech.AudioConfig(
-    audio_encoding=texttospeech.AudioEncoding.LINEAR16,
-    sample_rate_hertz=16000,
-    speaking_rate=1.0,
-    pitch=2.0  # Slightly higher pitch for friendliness
-)
+# Pico uses pre-recorded sound effects, NOT text-to-speech
+class SoundBank:
+    def __init__(self):
+        pygame.mixer.init()
+        self.sounds = {
+            'happy': pygame.mixer.Sound('sounds/chirp_happy.wav'),
+            'curious': pygame.mixer.Sound('sounds/hmm_curious.wav'),
+            'greeting': pygame.mixer.Sound('sounds/hello_chirp.wav'),
+            'purr': pygame.mixer.Sound('sounds/purr_loved.wav'),
+            'confused': pygame.mixer.Sound('sounds/confused_sound.wav'),
+            'listening': pygame.mixer.Sound('sounds/bing_listening.wav')
+        }
+    
+    def play(self, sound_name):
+        if sound_name in self.sounds:
+            self.sounds[sound_name].play()
 ```
+
+**Why No TTS?** Pico is designed as a non-verbal pet companion. It understands human speech but responds only with expressive sounds and body language, creating a more pet-like interaction experience.
 
 ### 1.4 Enhanced Online Stack Workflow
 
@@ -107,9 +114,9 @@ audio_config = texttospeech.AudioConfig(
 4. **Voice Interaction:** User says "Pico, what's 5 multiply by 4?"
 5. **STT (Google):** `[Audio Stream]` → `"What's 5 multiply by 4"` (Uses ~5 seconds of our 60-min/month quota)
 6. **Voice Recognition:** Optionally identify the speaker's voice
-7. **NLP/TTS (Gemini):** `"What's 5 multiply by 4"` → **(One API Call)** → Returns:
+7. **NLP (Gemini):** `"What's 5 multiply by 4"` → **(One API Call)** → Returns:
    - `Text:` "5 multiplied by 4 is 20" (to check for IoT commands)
-   - `Audio:` `response_audio.mp3` (which we play directly on the speaker)
+   - Robot then plays appropriate sound effect (acknowledgment chirp)
    - (Uses 1 of our 1,500 requests/day quota)
 
 ---
@@ -124,7 +131,7 @@ This stack is for advanced users. It cannot answer "What is 5×4?" but it can un
 |------|---------|--------------------------|
 | **STT** (Ears) | Vosk or ESP-SR | **ESP-SR (Espressif Speech Recognition)** is the best choice. It's a library from the chip maker (Espressif) designed for the ESP32-S3. It can be trained to recognize a small set of commands (e.g., "turn on," "turn off," "light," "blue") 100% on the device. |
 | **NLP** (Brain) | Hard-Coded `if/else` | There is no "AI" in this stack. Your code must manually parse the text from ESP-SR. **Example:** `if (text == "turn on" && text.contains("light")) { ... }` |
-| **TTS** (Voice) | PicoTTS | **This is the best offline option.** There is a GitHub project that ports PicoTTS directly to the ESP32-S3. It uses ~1.1MB of RAM (which is why we need the PSRAM model). It will sound robotic, but it's 100% free and offline. |
+| **Sound Effects** (Voice) | Pre-recorded .wav files | **Pico uses sound effects, not TTS.** Store .wav files in ESP32 flash memory. Play through I2S amplifier. Sounds like R2-D2 or Pokemon - chirps, purrs, whistles. |
 | **Face Detection** (Eyes) | ESP-WHO | **Espressif's official solution.** The ESP-WHO library provides face detection models optimized for ESP32-S3. Runs entirely on-device with no internet required. |
 | **Face Recognition** (Memory) | ESP-WHO + Custom Training | **Advanced but possible.** ESP-WHO can be trained to recognize specific faces and store the models on the device. Limited to a small number of faces due to memory constraints. |
 
@@ -136,7 +143,7 @@ This stack is for advanced users. It cannot answer "What is 5×4?" but it can un
 4. **Voice Interaction:** User says "Pico, turn on the light."
 5. **STT (ESP-SR):** `[Audio Stream]` → `"turn on light"` (Recognized from its limited vocabulary)
 6. **NLP (Your Code):** `if (text == "turn on light") { ... }` → Triggers the IoT function
-7. **TTS (PicoTTS):** Your code calls `pico.say("Okay")` → Generates robotic "Okay" audio and plays it
+7. **Sound Effect:** Your code plays `chirp_okay.wav` → Plays acknowledgment sound through speaker
 
 ---
 
@@ -151,10 +158,10 @@ This stack is for advanced users. It cannot answer "What is 5×4?" but it can un
 python --version  # Should be 3.10 or higher
 
 # Create virtual environment for project isolation
-python -m venv aibi_robot_env
-source aibi_robot_env/bin/activate  # Linux/Mac
+python -m venv pico_robot_env
+source pico_robot_env/bin/activate  # Linux/Mac
 # OR
-aibi_robot_env\Scripts\activate  # Windows
+pico_robot_env\Scripts\activate  # Windows
 
 # Install core dependencies
 pip install --upgrade pip setuptools wheel
@@ -176,8 +183,8 @@ pip install librosa==0.10.1
 
 # Google Cloud APIs
 pip install google-cloud-speech==2.21.0
-pip install google-cloud-texttospeech==2.16.3
 pip install google-generativeai==0.3.2
+# Note: No TTS library needed - Pico uses pre-recorded sounds
 
 # Utility Libraries
 pip install requests==2.31.0

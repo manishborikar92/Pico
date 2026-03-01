@@ -77,7 +77,7 @@ pip install pyaudio==0.2.11
 
 # Google Cloud libraries
 pip install google-cloud-speech==2.21.0
-pip install google-cloud-texttospeech==2.16.3
+# Note: No TTS library needed - Pico uses pre-recorded sounds
 pip install google-generativeai==0.3.2
 
 # Utility libraries

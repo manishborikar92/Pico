@@ -23,7 +23,7 @@ This document outlines the complete feature set for the robot, organized by func
     * **IoT Command:** (e.g., "Turn on the light")
     * **Mode Change:** (e.g., "Connect to ChatGPT")
 * **[AI-4] Cloud AI Integration:** Ability to enter "ChatGPT Mode" where all subsequent voice queries are sent to a free-tier generative AI API (e.g., Google Gemini).
-* **[AI-5] Text-to-Speech (TTS):** The robot sends text responses (from AI or internal commands) to a free-tier TTS service to generate audio, which is then played through the speaker.
+* **[AI-5] Sound Bank Playback:** The robot plays pre-recorded sound effects (.wav files) to express emotions and reactions. **No TTS** - Pico is non-verbal and communicates like a pet through chirps, purrs, and whistles. See `docs/Sound_Bank_Guide.md` for complete sound creation guide.
 * **[AI-6] IoT Smart Home Control:** The robot can send commands (e.g., MQTT, HTTP requests) to smart home platforms (e.g., Home Assistant, IFTTT) to control external devices.
 
 ---
@@ -49,7 +49,7 @@ The Emotion Engine is a state machine that links triggers to reactions, creating
 | **[P-2]**  | Idle (No activity) | Eyes "breathe" slowly or blink | Silent |
 | **[P-3]**  | Wake-Word Heard | "Listening" icon (e.g., swirl) | Affirmative "bing!" chirp |
 | **[P-4]**  | Voice Query Received | "Thinking" icon (e.g., dots) | Short "processing" sound |
-| **[P-5]**  | Q&A Answer Ready | Returns to "Idle" | Speaks the TTS audio |
+| **[P-5]**  | Command Understood | Returns to "Idle" | Plays acknowledgment sound (chirp) |
 | **[P-6]**  | IoT Command Succeeded | "Happy" eyes (e.g., `^.^`) | Happy "Whoop!" sound |
 | **[P-7]**  | Command Failed (Error) | "Confused" eyes (e.g., `?_?`) | Sad "womp-womp" sound |
 | **[P-8]**  | **Touch Sensor** (TTP223) | "Happy" eyes (e.g., `^.^`) | "Purring" or "cooing" sound |
@@ -65,14 +65,15 @@ The Emotion Engine is a state machine that links triggers to reactions, creating
 
 ## 5. ⚙️ Physical Hardware Features
 
-* **[H-1] Enclosure:** A 3D-printable, two-part modular design:
-    * **Head:** Contains the ESP32-S3-EYE (with integrated camera and microphone), battery, sensors, speaker, and screen.
-    * **Base:** Contains the charging circuit and an optional larger magnet.
-* **[H-2] Magnetic Attachment:** Neodymium magnets in the Head and Base allow them to snap together securely.
-* **[H-3] Wearable Design:** The Head's magnet is strong enough to attach to a shirt or pocket using a secondary magnetic clip, or to metal surfaces (e.g., refrigerator).
-* **[H-4] Charging System:** A TP4056 module in the Base charges the LiPo battery in the Head, ideally via pogo pins or magnetic contacts.
-* **[H-5] Touch Sensor:** A TTP223 capacitive touch sensor integrated into the Head's enclosure (e.g., on the "forehead") for petting interactions.
+* **[H-1] Enclosure:** A 3D-printable desktop design that houses all components:
+    * Contains the ESP32-S3-EYE (with integrated camera and microphone), battery, sensors, speaker, OLED screen, and servos.
+    * Designed to sit on a desk with a stable base.
+* **[H-2] Head Movement System:** 2-axis servo mechanism allows the head to pan (left/right) and tilt (up/down) for expressive movements.
+* **[H-3] Desktop Design:** Stationary robot designed to sit on your desk, not wearable or portable.
+* **[H-4] Charging System:** A TP4056 module charges the LiPo battery via USB-C connection.
+* **[H-5] Touch Sensor:** A TTP223 capacitive touch sensor integrated into the enclosure (e.g., on the "forehead") for petting interactions.
 * **[H-6] Camera System:** A 2MP camera integrated into the ESP32-S3-EYE board provides face detection and recognition capabilities.
+* **[H-7] Head Movement:** 2x SG90 micro servos provide 2-axis head movement (Pan left/right, Tilt up/down) for expressive body language.
 
 ---
 
@@ -123,7 +124,7 @@ The Emotion Engine is a state machine that links triggers to reactions, creating
 
 * **[C-1] Google Speech-to-Text:** 16kHz audio with multiple language support
 * **[C-2] Google Gemini API:** 1M token context with multimodal input support
-* **[C-3] Google Text-to-Speech:** Neural voices with SSML markup support
+* **[C-3] Sound Bank System:** Pre-recorded .wav files for pet-like communication (no TTS)
 * **[C-4] Fallback Systems:** Offline processing when cloud services are unavailable
 * **[C-5] Rate Limiting:** Intelligent request throttling to stay within free tiers
 * **[C-6] Caching:** Local caching of frequent responses for faster interaction

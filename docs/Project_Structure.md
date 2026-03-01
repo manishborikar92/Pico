@@ -61,7 +61,7 @@ The PICO Robot project is a sophisticated AI-powered robotic system that require
 ## High-Level Structure
 
 ```
-aibi-robot/
+pico-robot/
 ├── .git/                    # Git version control
 ├── docs/                    # Documentation and guides
 ├── simulation/              # PC-based simulation environment
@@ -243,13 +243,34 @@ examples/
 
 ```
 assets/
+├── sounds/                # PICO Sound Bank (non-verbal communication)
+│   ├── README.md         # Sound Bank documentation
+│   ├── ATTRIBUTION.md    # Source credits for sounds
+│   ├── emotional/        # Emotional expression sounds
+│   │   ├── happy_chirp_01.wav
+│   │   ├── happy_chirp_02.wav
+│   │   ├── curious_hum_01.wav
+│   │   ├── sad_whimper_01.wav
+│   │   ├── excited_whistle_01.wav
+│   │   ├── loved_purr_01.wav
+│   │   └── sleepy_yawn_01.wav
+│   ├── reactions/        # System response sounds
+│   │   ├── greeting_beep.wav
+│   │   ├── acknowledgment_chirp.wav
+│   │   ├── success_ding.wav
+│   │   ├── error_buzz.wav
+│   │   └── listening_bing.wav
+│   ├── ambient/          # Background/continuous sounds
+│   │   ├── startup_beep.wav
+│   │   ├── thinking_hum.wav
+│   │   └── idle_breathing.wav
+│   └── test/             # Test and calibration sounds
+│       ├── test_tone_440hz.wav
+│       └── volume_reference.wav
 ├── images/                # Images and graphics
 │   ├── logos/
 │   ├── diagrams/
 │   └── screenshots/
-├── audio/                 # Audio files and samples
-│   ├── sounds/
-│   └── voice-samples/
 ├── video/                 # Video demonstrations
 │   ├── tutorials/
 │   └── demos/
@@ -259,7 +280,7 @@ assets/
     └── reports/
 ```
 
-**Purpose:** Media assets, documentation images, and other non-code resources used throughout the project.
+**Purpose:** Media assets, documentation images, and other non-code resources used throughout the project. The `sounds/` directory contains PICO's complete Sound Bank for non-verbal pet-like communication (see docs/Sound_Bank_Guide.md for details).
 
 ### 8. Configuration (`configs/`)
 
@@ -409,8 +430,8 @@ configs/
 
 2. **Clone Repository:**
    ```powershell
-   git clone https://github.com/your-org/aibi-robot.git
-   cd aibi-robot
+   git clone https://github.com/your-org/pico-robot.git
+   cd pico-robot
    ```
 
 3. **Run Setup Script:**
@@ -439,8 +460,8 @@ configs/
 
 2. **Clone Repository:**
    ```bash
-   git clone https://github.com/your-org/aibi-robot.git
-   cd aibi-robot
+   git clone https://github.com/your-org/pico-robot.git
+   cd pico-robot
    ```
 
 3. **Run Setup Script:**
