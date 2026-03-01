@@ -47,6 +47,9 @@ export const metadata = {
     'face recognition',
     'maker project',
   ],
+  appleWebApp: {
+    title: 'Pico',
+  },
   openGraph: {
     title: 'Project PICO - AI Desktop Companion Robot',
     description:
