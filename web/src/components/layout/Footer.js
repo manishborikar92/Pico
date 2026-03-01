@@ -8,9 +8,9 @@ import PicoFace from '@/components/pico/PicoFace';
 
 const QUICK_LINKS = [
     { label: 'Home', href: '/' },
-    { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Hardware', href: '#hardware' },
+    { label: 'Features', href: '/#features' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'Hardware', href: '/#hardware' },
 ];
 
 const DOC_LINKS = [
@@ -36,7 +36,7 @@ export default function Footer() {
                             An emotionally responsive AI desktop companion that sees, hears, and feels.
                         </p>
                         <p className="text-caption text-ink-muted mt-2">
-                            Built with ❤️ by PICO Team
+                            Built with ❤️ by Team PICO
                         </p>
                     </div>
 

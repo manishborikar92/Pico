@@ -16,10 +16,10 @@ import { cn } from '@/lib/utils';
 /* ─── Constants ─── */
 const SCROLL_THRESHOLD = 40;
 const NAV_LINKS = [
-    { label: 'What is Pico', href: '#what-is-pico' },
-    { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Hardware', href: '#hardware' },
+    { label: 'What is Pico', href: '/#what-is-pico' },
+    { label: 'Features', href: '/#features' },
+    { label: 'How It Works', href: '/#how-it-works' },
+    { label: 'Hardware', href: '/#hardware' },
     { label: 'Docs', href: '/docs' },
 ];
 
