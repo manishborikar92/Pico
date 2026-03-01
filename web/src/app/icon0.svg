@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="160" height="96"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="160" height="96"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+  <!-- Face background -->
+  <rect width="160" height="96" rx="16" ry="16" fill="#1C1917"></rect>
+
+  <!-- Left Eye (positioned at x=16, y=16, size 56×64) -->
+  <!-- Eye shapes drawn in a 60×60 space, scaled to 56×64 via transform -->
+  <g transform="translate(16, 16) scale(0.9333, 1.0667)">
+    <!-- idle: large white circle -->
+    <circle cx="30" cy="30" r="22" fill="#FDFBF4"></circle>
+    <!-- pupil -->
+    <circle cx="30" cy="30" r="9" fill="#1C1917"></circle>
+  </g>
+
+  <!-- Right Eye (positioned at x=88, y=16, size 56×64) -->
+  <g transform="translate(88, 16) scale(0.9333, 1.0667)">
+    <!-- idle: large white circle -->
+    <circle cx="30" cy="30" r="22" fill="#FDFBF4"></circle>
+    <!-- pupil -->
+    <circle cx="30" cy="30" r="9" fill="#1C1917"></circle>
+  </g>
+</svg></svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

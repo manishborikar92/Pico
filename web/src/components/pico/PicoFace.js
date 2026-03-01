@@ -109,6 +109,7 @@ export default function PicoFace({
         setLeftBrightness(0.3);
         setRightBrightness(0.3);
         setHasBooted(false);
+        setIsBlinking(false); // ensure clean start
 
         /* Step 2: Left eye scans on */
         const t1 = setTimeout(() => {
@@ -122,13 +123,17 @@ export default function PicoFace({
         }, BOOT_RIGHT_START);
         addTimer(t2);
 
-        /* Step 4: Single blink */
+        /* Step 4a: Blink close (flat timeout — not nested) */
         const t3 = setTimeout(() => {
             setIsBlinking(true);
-            const t3b = setTimeout(() => setIsBlinking(false), BOOT_BLINK_OPEN);
-            addTimer(t3b);
         }, BOOT_BLINK_AT);
         addTimer(t3);
+
+        /* Step 4b: Blink open (flat timeout) */
+        const t3b = setTimeout(() => {
+            setIsBlinking(false);
+        }, BOOT_BLINK_AT + BOOT_BLINK_OPEN);
+        addTimer(t3b);
 
         /* Step 5: Transition to idle (or external expression) */
         const t4 = setTimeout(() => {
@@ -145,9 +150,12 @@ export default function PicoFace({
     }, []);
 
     /* ─── Sync external expression changes (with half-blink transition) ─── */
+    const prevExpressionRef = useRef(externalExpression);
     useEffect(() => {
         if (!hasBooted) return;
-        if (externalExpression === currentExpression) return;
+        if (externalExpression === prevExpressionRef.current) return;
+
+        prevExpressionRef.current = externalExpression;
 
         setIsTransitioning(true);
         setIsBlinking(true);
@@ -155,19 +163,17 @@ export default function PicoFace({
         const t1 = setTimeout(() => {
             setCurrentExpression(externalExpression);
         }, EXPRESSION_HALF_BLINK_MS);
-        addTimer(t1);
 
         const t2 = setTimeout(() => {
             setIsBlinking(false);
             setIsTransitioning(false);
         }, EXPRESSION_HALF_BLINK_MS * 2);
-        addTimer(t2);
 
         return () => {
             clearTimeout(t1);
             clearTimeout(t2);
         };
-    }, [externalExpression, hasBooted, currentExpression, addTimer]);
+    }, [externalExpression, hasBooted]);
 
     /* ─── Idle Behaviors ─── */
     useEffect(() => {
@@ -289,24 +295,42 @@ export default function PicoFace({
             role="img"
         >
             {/* Left Eye */}
-            <div style={{ width: (dims.w - dims.gap * 3) / 2, height: dims.h - dims.gap * 2 }}>
-                <EyeExpression
-                    shape={shapes.left}
-                    pupilOffset={pupilOffset}
-                    isBlinking={isBlinking}
-                    brightness={leftBrightness}
-                />
-            </div>
+            {(() => {
+                const eyeW = (dims.w - dims.gap * 3) / 2;
+                const eyeH = dims.h - dims.gap * 2;
+                const eyeSize = Math.min(eyeW, eyeH);
+                return (
+                    <div style={{ width: eyeW, height: eyeH, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: eyeSize, height: eyeSize }}>
+                            <EyeExpression
+                                shape={shapes.left}
+                                pupilOffset={pupilOffset}
+                                isBlinking={isBlinking}
+                                brightness={leftBrightness}
+                            />
+                        </div>
+                    </div>
+                );
+            })()}
 
             {/* Right Eye */}
-            <div style={{ width: (dims.w - dims.gap * 3) / 2, height: dims.h - dims.gap * 2 }}>
-                <EyeExpression
-                    shape={shapes.right}
-                    pupilOffset={pupilOffset}
-                    isBlinking={isBlinking}
-                    brightness={rightBrightness}
-                />
-            </div>
+            {(() => {
+                const eyeW = (dims.w - dims.gap * 3) / 2;
+                const eyeH = dims.h - dims.gap * 2;
+                const eyeSize = Math.min(eyeW, eyeH);
+                return (
+                    <div style={{ width: eyeW, height: eyeH, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: eyeSize, height: eyeSize }}>
+                            <EyeExpression
+                                shape={shapes.right}
+                                pupilOffset={pupilOffset}
+                                isBlinking={isBlinking}
+                                brightness={rightBrightness}
+                            />
+                        </div>
+                    </div>
+                );
+            })()}
         </motion.div>
     );
 }

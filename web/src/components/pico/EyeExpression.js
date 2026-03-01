@@ -15,7 +15,6 @@
 import { motion } from 'framer-motion';
 
 /* ─── Animation Constants ─── */
-const BLINK_DURATION = 0.08;
 const SPRING_CONFIG = { stiffness: 100, damping: 30 };
 
 /* ─── Eye Shape Definitions (SVG paths drawn in a 60×60 viewBox) ─── */
@@ -112,19 +111,24 @@ const EYE_SHAPES = {
 
 export default function EyeExpression({ shape = 'idle', pupilOffset = { x: 0, y: 0 }, isBlinking = false, brightness = 1 }) {
     return (
-        <motion.svg
+        <svg
             viewBox="0 0 60 60"
-            className="w-full h-full"
-            style={{ opacity: brightness }}
+            preserveAspectRatio="xMidYMid meet"
+            style={{
+                width: '100%',
+                height: '100%',
+                opacity: brightness,
+                display: 'block',
+            }}
             aria-hidden="true"
         >
-            {/* Blink overlay — a closing eyelid that scales vertically */}
-            <motion.g
-                animate={{
-                    scaleY: isBlinking ? 0.08 : 1,
+            {/* Blink overlay — uses CSS transform for reliable scaleY */}
+            <g
+                style={{
+                    transformOrigin: '30px 30px',
+                    transform: `scaleY(${isBlinking ? 0.08 : 1})`,
+                    transition: 'transform 0.08s ease-out',
                 }}
-                transition={{ duration: BLINK_DURATION }}
-                style={{ transformOrigin: '30px 30px' }}
             >
                 {/* Pupil offset group — moves the pupil shapes */}
                 <motion.g
@@ -133,7 +137,7 @@ export default function EyeExpression({ shape = 'idle', pupilOffset = { x: 0, y:
                 >
                     {EYE_SHAPES[shape] || EYE_SHAPES.idle}
                 </motion.g>
-            </motion.g>
-        </motion.svg>
+            </g>
+        </svg>
     );
 }

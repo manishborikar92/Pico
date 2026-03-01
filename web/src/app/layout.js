@@ -36,7 +36,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ─── SEO Metadata ─── */
 export const metadata = {
-  title: 'Project PICO — AI Desktop Companion Robot',
+  title: 'Project PICO - AI Desktop Companion Robot',
   description:
     'Build an emotionally responsive AI companion robot that sees, hears, and reacts like a pet. Open-source, ESP32-S3 based, software-first development.',
   keywords: [
@@ -47,8 +47,11 @@ export const metadata = {
     'face recognition',
     'maker project',
   ],
+  appleWebApp: {
+    title: 'Pico',
+  },
   openGraph: {
-    title: 'Project PICO — AI Desktop Companion Robot',
+    title: 'Project PICO - AI Desktop Companion Robot',
     description:
       'A non-verbal AI companion that communicates through expressions, sounds, and movement.',
     type: 'website',
@@ -65,11 +68,13 @@ export default function RootLayout({ children }) {
       className={`${dmSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
-        <NavBar />
-        <PageTransition>
-          <main>{children}</main>
-        </PageTransition>
-        <Footer />
+        <LenisProvider>
+          <NavBar />
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
