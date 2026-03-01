@@ -65,13 +65,11 @@ export default function RootLayout({ children }) {
       className={`${dmSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
-        <LenisProvider>
-          <NavBar />
-          <PageTransition>
-            <main>{children}</main>
-          </PageTransition>
-          <Footer />
-        </LenisProvider>
+        <NavBar />
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+        <Footer />
       </body>
     </html>
   );
