@@ -6,9 +6,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import PicoFace from '@/components/pico/PicoFace';
 import Button from '@/components/ui/Button';
+import DoodleBackground from '@/components/shared/DoodleBackground';
 
 /* ─── Animation Timing Constants ─── */
 const HEADLINE_DELAY = 1.2;
@@ -40,6 +41,9 @@ export default function HeroSection() {
                     background: 'radial-gradient(circle, rgba(255, 203, 71, 0.12) 0%, transparent 70%)',
                 }}
             />
+
+            {/* ── Doodle pattern background ── */}
+            <DoodleBackground />
 
             {/* PicoFace — full boot-up sequence */}
             <motion.div
