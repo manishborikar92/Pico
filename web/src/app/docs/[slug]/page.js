@@ -67,13 +67,14 @@ function getDocContent(slug) {
     const filename = SLUG_TO_FILE[slug];
     if (!filename) return null;
 
-    /* Look for docs in the project root's docs/ directory */
-    const docsDir = path.join(process.cwd(), '..', 'docs');
-    const filePath = path.join(docsDir, filename);
+    /* Read from internal /content/docs folder copied by the prebuild script */
+    const internalDocsDir = path.join(process.cwd(), 'content', 'docs');
+    const filePath = path.join(internalDocsDir, filename);
 
     try {
         return fs.readFileSync(filePath, 'utf-8');
     } catch {
+        console.error(`❌ Could not find doc file: ${filename} at ${filePath}`);
         return null;
     }
 }
