@@ -47,15 +47,15 @@ export default function PersonalitySection() {
                     {/* Left — State Machine Grid */}
                     <motion.div variants={fadeInUp}>
                         <h3 className="text-heading-md text-ink mb-6">Emotion States</h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {EMOTION_STATES.map((state) => (
                                 <motion.button
                                     key={state.key}
                                     variants={cardEntrance}
                                     onClick={() => setActiveExpression(state.key)}
                                     className={`p-3 rounded-standard text-center cursor-pointer transition-all ${activeExpression === state.key
-                                            ? 'ring-2 shadow-md'
-                                            : 'hover:shadow-sm'
+                                        ? 'ring-2 shadow-md'
+                                        : 'hover:shadow-sm'
                                         }`}
                                     style={{
                                         backgroundColor: activeExpression === state.key ? state.color + '18' : 'var(--warm-white)',

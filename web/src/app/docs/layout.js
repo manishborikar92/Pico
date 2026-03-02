@@ -1,8 +1,9 @@
 /**
- * Docs Layout — Three-column layout wrapping all /docs/* pages.
- * Left: DocsSidebar (sticky). Center: page content. Right: reserved for future TOC.
+ * Docs Layout — Responsive layout wrapping all /docs/* pages.
+ * Desktop: Three-column with sticky sidebar. Mobile: full-width with dropdown nav.
  */
 import DocsSidebar from '@/components/docs/DocsSidebar';
+import DocsMobileNav from '@/components/docs/DocsMobileNav';
 
 export const metadata = {
     title: 'Documentation',
@@ -26,12 +27,14 @@ export const metadata = {
 export default function DocsLayout({ children }) {
     return (
         <div className="pt-20 min-h-screen">
-            <div className="max-w-[1200px] mx-auto px-6 py-8 flex gap-8">
-                {/* Left Sidebar */}
+            <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8 flex gap-8">
+                {/* Left Sidebar — hidden on mobile, visible on lg+ */}
                 <DocsSidebar />
 
-                {/* Center Content */}
+                {/* Center Content — full width on mobile */}
                 <main className="flex-1 min-w-0 max-w-[720px]">
+                    {/* Mobile docs navigation dropdown */}
+                    <DocsMobileNav />
                     {children}
                 </main>
 

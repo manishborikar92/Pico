@@ -72,7 +72,7 @@ export default function WhatIsPicoSection() {
                     {/* Left Column */}
                     <motion.div variants={fadeInUp} className="flex flex-col gap-8">
                         {/* Pull-quote */}
-                        <blockquote className="text-heading-lg italic text-ink leading-relaxed">
+                        <blockquote className="text-heading-md lg:text-heading-lg italic text-ink leading-relaxed">
                             &ldquo;Unlike smart speakers that just answer questions, Pico behaves like a living pet.
                             It&apos;s a non-verbal AI companion that communicates through expressive sounds,
                             animated eyes, and head movements.&rdquo;

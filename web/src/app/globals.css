@@ -52,6 +52,13 @@
   --font-size-caption: 0.75rem;
   --font-size-code: 0.875rem;
 
+  /* ─── Mobile Font Sizes (≤640px) ─── */
+  --font-size-display-xl-mobile: 2.5rem;
+  --font-size-display-lg-mobile: 2rem;
+  --font-size-display-md-mobile: 1.75rem;
+  --font-size-heading-lg-mobile: 1.5rem;
+  --font-size-heading-md-mobile: 1.25rem;
+
   /* ─── Custom Border Radius ─── */
   --radius-sharp: 4px;
   --radius-standard: 12px;
@@ -230,6 +237,25 @@ body {
   font-family: var(--font-mono);
   font-size: var(--font-size-code);
   line-height: 1.6;
+}
+
+/* ─── Responsive Typography (Mobile ≤640px) ─── */
+@media (max-width: 640px) {
+  .text-display-xl {
+    font-size: var(--font-size-display-xl-mobile);
+  }
+  .text-display-lg {
+    font-size: var(--font-size-display-lg-mobile);
+  }
+  .text-display-md {
+    font-size: var(--font-size-display-md-mobile);
+  }
+  .text-heading-lg {
+    font-size: var(--font-size-heading-lg-mobile);
+  }
+  .text-heading-md {
+    font-size: var(--font-size-heading-md-mobile);
+  }
 }
 
 /* ─── Gradient Utilities ─── */
