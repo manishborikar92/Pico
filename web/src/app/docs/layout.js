@@ -5,8 +5,22 @@
 import DocsSidebar from '@/components/docs/DocsSidebar';
 
 export const metadata = {
-    title: 'Documentation — Pico by Vaelix',
-    description: 'Learn about Pico — the AI desktop companion by Vaelix.',
+    title: 'Documentation',
+    description: 'Learn about Pico — the AI desktop companion by Vaelix. Features, hardware, and technology.',
+    alternates: {
+        canonical: '/docs',
+    },
+    openGraph: {
+        title: 'Documentation — Pico by Vaelix',
+        description: 'Explore Pico documentation: features, hardware, technology stack, and more.',
+        url: '/docs',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Documentation — Pico by Vaelix',
+        description: 'Explore Pico documentation: features, hardware, technology stack, and more.',
+    },
 };
 
 export default function DocsLayout({ children }) {

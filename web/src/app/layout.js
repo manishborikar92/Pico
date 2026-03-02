@@ -36,7 +36,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ─── SEO Metadata ─── */
 export const metadata = {
-  title: 'Pico — AI Desktop Companion by Vaelix',
+  metadataBase: new URL('https://pico.vaelix.in'),
+  title: {
+    default: 'Pico — AI Desktop Companion by Vaelix',
+    template: '%s | Pico by Vaelix',
+  },
   description:
     'Pico is an emotionally responsive AI desktop companion that sees, hears, and reacts like a pet. Currently in development by Vaelix.',
   keywords: [
@@ -46,18 +50,48 @@ export const metadata = {
     'face recognition',
     'Vaelix',
     'emotional AI',
+    'AI companion',
+    'desktop robot',
+    'expressive AI',
   ],
+  authors: [{ name: 'Vaelix', url: 'https://www.vaelix.in' }],
+  creator: 'Vaelix',
+  publisher: 'Vaelix',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
   appleWebApp: {
     title: 'Pico',
+    capable: true,
+    statusBarStyle: 'default',
   },
   openGraph: {
     title: 'Pico — AI Desktop Companion by Vaelix',
     description:
       'A non-verbal AI companion that communicates through expressions, sounds, and movement. A product by Vaelix.',
     type: 'website',
+    url: '/',
+    siteName: 'Pico by Vaelix',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Pico — AI Desktop Companion by Vaelix',
+    description:
+      'An emotionally responsive AI desktop companion that sees, hears, and reacts like a pet.',
+    creator: '@vaelix',
+    site: '@vaelix',
   },
 };
 
