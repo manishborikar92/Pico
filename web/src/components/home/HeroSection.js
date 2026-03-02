@@ -32,7 +32,7 @@ export default function HeroSection() {
         <section
             id="hero"
             ref={ref}
-            className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+            className="pt-10 relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
         >
             {/* Radial gradient bloom behind face */}
             <div
