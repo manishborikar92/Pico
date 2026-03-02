@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/copy-docs.js && next dev",
-    "build": "node scripts/copy-docs.js && next build",
+    "predev": "node scripts/copy-docs.js",
+    "dev": "next dev",
+    "prebuild": "node scripts/copy-docs.js",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
