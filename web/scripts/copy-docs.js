@@ -29,7 +29,14 @@ function copyDocs() {
     }
 
     // 3. Copy files
-    const sourceFiles = fs.existsSync(sourceDir) ? fs.readdirSync(sourceDir) : [];
+    if (!fs.existsSync(sourceDir)) {
+        console.error(`\n❌ FATAL ERROR: Documentation source directory not found!`);
+        console.error(`Attempted path: ${sourceDir}`);
+        console.error(`If on Vercel, ensure the project "Root Directory" isn't isolating the build from the monorepo root.\n`);
+        process.exit(1);
+    }
+
+    const sourceFiles = fs.readdirSync(sourceDir);
     let copyCount = 0;
 
     for (const file of sourceFiles) {
