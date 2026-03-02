@@ -36,24 +36,24 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ─── SEO Metadata ─── */
 export const metadata = {
-  title: 'Project PICO - AI Desktop Companion Robot',
+  title: 'Pico — AI Desktop Companion by Vaelix',
   description:
-    'Build an emotionally responsive AI companion robot that sees, hears, and reacts like a pet. Open-source, ESP32-S3 based, software-first development.',
+    'Pico is an emotionally responsive AI desktop companion that sees, hears, and reacts like a pet. Currently in development by Vaelix.',
   keywords: [
     'AI robot',
-    'ESP32',
     'companion robot',
     'desktop pet',
     'face recognition',
-    'maker project',
+    'Vaelix',
+    'emotional AI',
   ],
   appleWebApp: {
     title: 'Pico',
   },
   openGraph: {
-    title: 'Project PICO - AI Desktop Companion Robot',
+    title: 'Pico — AI Desktop Companion by Vaelix',
     description:
-      'A non-verbal AI companion that communicates through expressions, sounds, and movement.',
+      'A non-verbal AI companion that communicates through expressions, sounds, and movement. A product by Vaelix.',
     type: 'website',
   },
   twitter: {

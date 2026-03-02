@@ -2,8 +2,8 @@
  * About page layout — provides metadata for SEO
  */
 export const metadata = {
-    title: 'About — Project PICO',
-    description: 'Learn about the origin, philosophy, and team behind Project PICO.',
+    title: 'About — Pico by Vaelix',
+    description: 'Learn about the origin, philosophy, and vision behind Pico — an AI desktop companion by Vaelix.',
 };
 
 export default function AboutLayout({ children }) {

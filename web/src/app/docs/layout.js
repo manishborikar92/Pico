@@ -5,8 +5,8 @@
 import DocsSidebar from '@/components/docs/DocsSidebar';
 
 export const metadata = {
-    title: 'Documentation — Project PICO',
-    description: 'Comprehensive guides and references for building your PICO robot.',
+    title: 'Documentation — Pico by Vaelix',
+    description: 'Learn about Pico — the AI desktop companion by Vaelix.',
 };
 
 export default function DocsLayout({ children }) {
