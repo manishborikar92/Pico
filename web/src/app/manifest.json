@@ -1,6 +1,8 @@
 {
-  "name": "PICO - AI Desktop Companion Robot",
+  "name": "Pico — AI Desktop Companion by Vaelix",
   "short_name": "Pico",
+  "description": "An emotionally responsive AI desktop companion that sees, hears, and feels.",
+  "start_url": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +17,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#F5F0E8",
+  "background_color": "#F5F0E8",
   "display": "standalone"
 }

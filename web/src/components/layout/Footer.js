@@ -1,8 +1,8 @@
 /**
  * Footer — Three-column layout on desktop, stacked on mobile.
  * Cream background (#F5F0E8). Top border: 1px solid warm gray mid.
- * Col 1: Logo + tagline. Col 2: Quick links. Col 3: Doc links.
- * Bottom strip: copyright + tech credits.
+ * Col 1: Logo + tagline. Col 2: Quick links. Col 3: Contact / Vaelix links.
+ * Bottom strip: copyright + Vaelix credit.
  */
 import PicoFace from '@/components/pico/PicoFace';
 
@@ -11,13 +11,15 @@ const QUICK_LINKS = [
     { label: 'Features', href: '/#features' },
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Hardware', href: '/#hardware' },
+    { label: 'About', href: '/about' },
 ];
 
 const DOC_LINKS = [
-    { label: 'Overview', href: '/docs/overview' },
-    { label: 'Dev Guide', href: '/docs/development-plan' },
-    { label: 'Hardware Guide', href: '/docs/hardware' },
-    { label: 'FAQ', href: '/docs/faq' },
+    { label: 'Project Overview', href: '/docs/overview' },
+    { label: 'Features', href: '/docs/features' },
+    { label: 'Hardware', href: '/docs/hardware' },
+    { label: 'Technology Stack', href: '/docs/technology-stack' },
+    { label: 'Sound Design', href: '/docs/sound-bank' },
 ];
 
 export default function Footer() {
@@ -36,7 +38,15 @@ export default function Footer() {
                             An emotionally responsive AI desktop companion that sees, hears, and feels.
                         </p>
                         <p className="text-caption text-ink-muted mt-2">
-                            Built with ❤️ by Team PICO
+                            A product by{' '}
+                            <a
+                                href="https://www.vaelix.in"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-periwinkle transition-colors underline underline-offset-2"
+                            >
+                                Vaelix
+                            </a>
                         </p>
                     </div>
 

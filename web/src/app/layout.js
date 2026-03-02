@@ -36,28 +36,62 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ─── SEO Metadata ─── */
 export const metadata = {
-  title: 'Project PICO - AI Desktop Companion Robot',
+  metadataBase: new URL('https://pico.vaelix.in'),
+  title: {
+    default: 'Pico — AI Desktop Companion by Vaelix',
+    template: '%s | Pico by Vaelix',
+  },
   description:
-    'Build an emotionally responsive AI companion robot that sees, hears, and reacts like a pet. Open-source, ESP32-S3 based, software-first development.',
+    'Pico is an emotionally responsive AI desktop companion that sees, hears, and reacts like a pet. Currently in development by Vaelix.',
   keywords: [
     'AI robot',
-    'ESP32',
     'companion robot',
     'desktop pet',
     'face recognition',
-    'maker project',
+    'Vaelix',
+    'emotional AI',
+    'AI companion',
+    'desktop robot',
+    'expressive AI',
   ],
+  authors: [{ name: 'Vaelix', url: 'https://www.vaelix.in' }],
+  creator: 'Vaelix',
+  publisher: 'Vaelix',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
   appleWebApp: {
     title: 'Pico',
+    capable: true,
+    statusBarStyle: 'default',
   },
   openGraph: {
-    title: 'Project PICO - AI Desktop Companion Robot',
+    title: 'Pico — AI Desktop Companion by Vaelix',
     description:
-      'A non-verbal AI companion that communicates through expressions, sounds, and movement.',
+      'A non-verbal AI companion that communicates through expressions, sounds, and movement. A product by Vaelix.',
     type: 'website',
+    url: '/',
+    siteName: 'Pico by Vaelix',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Pico — AI Desktop Companion by Vaelix',
+    description:
+      'An emotionally responsive AI desktop companion that sees, hears, and reacts like a pet.',
+    creator: '@vaelix',
+    site: '@vaelix',
   },
 };
 

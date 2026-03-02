@@ -30,15 +30,33 @@ export async function generateStaticParams() {
 }
 
 /**
- * Generate metadata per page for SEO.
+ * Generate comprehensive metadata per doc page for SEO & social sharing.
  */
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const doc = getDocBySlug(slug);
     if (!doc) return {};
+
+    const title = doc.title;
+    const description = doc.description;
+
     return {
-        title: `${doc.title} — PICO Docs`,
-        description: doc.description,
+        title,
+        description,
+        alternates: {
+            canonical: `/docs/${slug}`,
+        },
+        openGraph: {
+            title: `${title} — Pico Docs`,
+            description,
+            url: `/docs/${slug}`,
+            type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${title} — Pico Docs`,
+            description,
+        },
     };
 }
 

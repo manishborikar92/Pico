@@ -21,6 +21,7 @@ const NAV_LINKS = [
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Hardware', href: '/#hardware' },
     { label: 'Docs', href: '/docs' },
+    { label: 'About', href: '/about' },
 ];
 
 export default function NavBar() {
@@ -67,8 +68,8 @@ export default function NavBar() {
 
                 {/* Right: CTA */}
                 <div className="hidden md:block">
-                    <Button variant="primary" size="sm" href="/docs/development-plan">
-                        Start Building
+                    <Button variant="primary" size="sm" href="mailto:info@vaelix.in">
+                        Contact Us
                     </Button>
                 </div>
 
@@ -131,10 +132,10 @@ export default function NavBar() {
                                         <Button
                                             variant="primary"
                                             size="lg"
-                                            href="/docs/development-plan"
+                                            href="mailto:info@vaelix.in"
                                             onClick={() => setMobileOpen(false)}
                                         >
-                                            Start Building
+                                            Contact Us
                                         </Button>
                                     </motion.div>
                                 </Dialog.Content>

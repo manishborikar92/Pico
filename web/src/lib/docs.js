@@ -1,31 +1,25 @@
 /**
  * Documentation page data — Maps URL slugs to document metadata.
  * Used by the dynamic docs route and the sidebar navigation.
+ * 
+ * Only product-relevant documentation is publicly exposed.
+ * Development/build guides are internal to Vaelix.
  */
 
 export const DOCS_NAV = [
     {
-        category: 'Getting Started',
+        category: 'About Pico',
         items: [
-            { slug: 'overview', title: 'Project Overview', description: 'What is PICO and why does it exist?' },
+            { slug: 'overview', title: 'Project Overview', description: 'What is PICO and the vision behind it' },
             { slug: 'features', title: 'Features', description: 'Complete feature list and capabilities' },
-            { slug: 'hardware', title: 'Hardware Guide', description: 'Components, BOM, and wiring' },
         ],
     },
     {
-        category: 'Development',
+        category: 'Technical Details',
         items: [
-            { slug: 'development-plan', title: 'Development Plan', description: 'Phased development roadmap' },
-            { slug: 'technology-stack', title: 'Technology Stack', description: 'Software and cloud services' },
-            { slug: 'sound-bank', title: 'Sound Bank Guide', description: 'Creating PICO\'s voice' },
-        ],
-    },
-    {
-        category: 'Environment',
-        items: [
-            { slug: 'windows-guide', title: 'Windows Setup', description: 'Development on Windows 11' },
-            { slug: 'faq', title: 'FAQ', description: 'Frequently asked questions' },
-            { slug: 'project-structure', title: 'Project Structure', description: 'File organization guide' },
+            { slug: 'hardware', title: 'Hardware', description: 'The hardware platform powering Pico' },
+            { slug: 'technology-stack', title: 'Technology Stack', description: 'Software and AI services under the hood' },
+            { slug: 'sound-bank', title: 'Sound Design', description: 'How Pico communicates through sound' },
         ],
     },
 ];

@@ -91,8 +91,8 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: CTA_DELAY, duration: 0.5 }}
             >
-                <Button variant="primary" size="lg" href="/docs/development-plan">
-                    Start Building
+                <Button variant="primary" size="lg" href="mailto:info@vaelix.in">
+                    Connect With Us
                 </Button>
                 <Button variant="secondary" size="lg" href="#how-it-works">
                     See How It Works

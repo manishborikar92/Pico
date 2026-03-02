@@ -1,6 +1,6 @@
 /**
- * HowItWorksSection — 3-phase development methodology.
- * Phase 1: Simulate, Phase 2: Port, Phase 3: Integrate.
+ * HowItWorksSection — Explains how Pico works as a product.
+ * Shows the three core capabilities: Sense, Think, Express.
  * Uses StepCard with vertical connecting line between steps.
  */
 'use client';
@@ -10,50 +10,50 @@ import { motion, useInView } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader';
 import StepCard from '@/components/shared/StepCard';
 import { staggerContainer, fadeInUp } from '@/lib/motion';
-import { FiMonitor, FiCpu, FiBox } from 'react-icons/fi';
+import { FiEye, FiCpu, FiSmile } from 'react-icons/fi';
 
-/* ─── Phase Data ─── */
+/* ─── How Pico Works Data ─── */
 const PHASES = [
     {
         step: 1,
-        title: 'Simulate on PC',
+        title: 'Sense the World',
         description:
-            'Develop and test 100% of AI functionality on your laptop using Python. Camera, microphone, and speakers simulate the robot hardware. Zero hardware cost to start.',
+            'Pico uses an integrated camera and microphone to perceive its surroundings. It detects faces, recognizes people, hears your voice, and senses touch — always aware and attentive.',
         accentColor: 'var(--periwinkle)',
-        icon: <FiMonitor />,
+        icon: <FiEye />,
         bullets: [
-            'Python 3.11 + OpenCV + face_recognition',
-            'Google Cloud Speech-to-Text + Gemini AI',
-            'Sound Bank with 20+ expressive WAV files',
-            'Full Emotion Engine state machine',
+            'Real-time face detection & recognition',
+            'Wake-word and voice command listening',
+            'Touch-sensitive interaction via capacitive sensor',
+            'Motion and presence awareness',
         ],
     },
     {
         step: 2,
-        title: 'Port to Hardware',
+        title: 'Think & Feel',
         description:
-            'Translate validated Python logic to C++ (Arduino framework). Upload firmware to the ESP32-S3-EYE via USB. Same algorithms, embedded performance.',
+            'At Pico\'s core is an advanced Emotion Engine — a state machine that processes sensory inputs and determines the appropriate emotional response, creating lifelike behavior.',
         accentColor: 'var(--teal)',
         icon: <FiCpu />,
         bullets: [
-            'Arduino IDE + ESP-IDF toolchain',
-            'ESP-WHO face detection on-device',
-            'ESP-SR wake-word recognition',
-            'I2S audio + OLED display drivers',
+            '8 distinct emotional states with smooth transitions',
+            'Contextual AI processing via Google Gemini',
+            'Time-aware greetings and adaptive behavior',
+            'Natural idle behaviors — blinking, drifting, yawning',
         ],
     },
     {
         step: 3,
-        title: 'Integrate & Build',
+        title: 'Express & Respond',
         description:
-            'Assemble the physical robot with 3D-printed shell, servo head tracking, touch sensor, and speaker. Total hardware cost under ₹10,000.',
+            'Pico communicates not through words, but through the universal language of expression — animated eyes, expressive chirps, and lifelike head movement that feel genuinely alive.',
         accentColor: 'var(--warm-orange)',
-        icon: <FiBox />,
+        icon: <FiSmile />,
         bullets: [
-            'ESP32-S3-EYE + 0.96" OLED display',
-            'Pan-tilt servo head (2× SG90)',
-            'MAX98357A I2S amp + speaker',
-            '3D-printed magnetic shell',
+            'Animated OLED eye expressions at 30+ FPS',
+            '20+ unique sound effects for every emotion',
+            'Pan-tilt servo head tracking and movement',
+            'Personality-driven responses — never robotic',
         ],
     },
 ];
@@ -66,9 +66,9 @@ export default function HowItWorksSection() {
         <section id="how-it-works" className="py-16 md:py-24 px-6 bg-warm-gray-light">
             <div className="max-w-[1200px] mx-auto">
                 <SectionHeader
-                    badge="Development Methodology"
-                    title="Software-First Approach"
-                    subtitle="Perfect your AI on PC before spending a single rupee on hardware."
+                    badge="How It Works"
+                    title="Sense. Think. Express."
+                    subtitle="Pico's three-stage intelligence pipeline brings it to life."
                 />
 
                 <motion.div

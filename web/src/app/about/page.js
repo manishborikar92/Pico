@@ -1,7 +1,7 @@
 /**
- * About Page — Project origin, philosophy, and contributions.
- * Covers: Project genesis, team vision, software-first philosophy,
- * contribution guidelines, and inspirations.
+ * About Page — Project origin, philosophy, and vision.
+ * Covers: Project genesis, Vaelix team vision, design philosophy,
+ * and inspirations. Positioned as a private Vaelix product.
  */
 'use client';
 
@@ -26,8 +26,8 @@ const PILLARS = [
         emoji: '🌱',
     },
     {
-        title: 'Honest & Open',
-        description: 'Fully open-source with honest pricing. No hidden costs, no vendor lock-in.',
+        title: 'Thoughtfully Crafted',
+        description: 'Every component is meticulously designed and engineered for the best experience possible.',
         color: 'var(--periwinkle)',
         emoji: '💜',
     },
@@ -47,7 +47,7 @@ const INSPIRATIONS = [
     { name: 'Cozmo', desc: 'An AI robot with genuine emotional range' },
 ];
 
-/* Metadata is defined via a separate layout or generateMetadata since this is a client component */
+/* Metadata is defined via a separate layout since this is a client component */
 
 export default function AboutPage() {
     return (
@@ -70,7 +70,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.5 }}
                     >
-                        About Project PICO
+                        About Pico
                     </motion.h1>
 
                     <motion.p
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 <div className="max-w-[800px] mx-auto">
                     <SectionHeader
                         badge="Origin Story"
-                        title="Why PICO Exists"
+                        title="Why Pico Exists"
                     />
                     <motion.div
                         className="prose-custom space-y-4 text-body-md text-ink-light"
@@ -105,13 +105,13 @@ export default function AboutPage() {
                             never truly <em>see</em> you.
                         </p>
                         <p>
-                            PICO was conceived as the antithesis of this paradigm — a companion that communicates not
+                            Pico was conceived as the antithesis of this paradigm — a companion that communicates not
                             through words, but through the universal language of expression. Like R2-D2 or Wall-E,
-                            PICO proves that true communication transcends language.
+                            Pico proves that true communication transcends language.
                         </p>
                         <p>
-                            Built on the ESP32-S3-EYE platform with a software-first development methodology,
-                            PICO represents a new category: the<strong> AI desk pet</strong> — always present,
+                            Developed by the team at <a href="https://www.vaelix.in" target="_blank" rel="noopener noreferrer" className="text-periwinkle hover:underline">Vaelix</a>,
+                            Pico represents a new category: the<strong> AI desk pet</strong> — always present,
                             always responsive, never intrusive.
                         </p>
                     </motion.div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
                     <SectionHeader
                         badge="Design Philosophy"
                         title="Built With Intention"
-                        subtitle="Every decision in PICO's design serves a purpose."
+                        subtitle="Every decision in Pico's design serves a purpose."
                     />
 
                     <motion.div
@@ -155,7 +155,7 @@ export default function AboutPage() {
                     <SectionHeader
                         badge="Inspirations"
                         title="Standing on Shoulders"
-                        subtitle="The characters and products that inspired PICO."
+                        subtitle="The characters and products that inspired Pico."
                     />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -176,16 +176,16 @@ export default function AboutPage() {
             <section className="px-6 py-16">
                 <div className="max-w-[600px] mx-auto text-center">
                     <SectionHeader
-                        badge="Contribute"
-                        title="Join the Project"
-                        subtitle="PICO is open-source and community-driven. Contributions welcome."
+                        badge="Get In Touch"
+                        title="Interested in Pico?"
+                        subtitle="Pico is currently in development at Vaelix. Reach out to learn more or explore collaboration opportunities."
                     />
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button variant="primary" size="lg" href="/docs/development-plan">
-                            Read the Dev Guide
+                        <Button variant="primary" size="lg" href="mailto:info@vaelix.in">
+                            Connect With Us
                         </Button>
-                        <Button variant="secondary" size="lg" href="https://github.com">
-                            View on GitHub
+                        <Button variant="secondary" size="lg" href="https://www.vaelix.in">
+                            Visit Vaelix
                         </Button>
                     </div>
                 </div>

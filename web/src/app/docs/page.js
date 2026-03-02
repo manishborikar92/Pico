@@ -11,8 +11,8 @@ export default function DocsIndexPage() {
         <div>
             <SectionHeader
                 badge="Documentation"
-                title="Learn PICO"
-                subtitle="Everything you need to build your own AI companion robot."
+                title="Discover PICO"
+                subtitle="Learn about the technology, features, and vision behind Pico."
             />
 
             <div className="space-y-10">

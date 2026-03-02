@@ -1,7 +1,7 @@
 /**
- * TechStackSection — Visual representation of the technology stack.
- * Shows two stacks: PC Simulation (Python) and Robot Firmware (C++),
- * plus the Cloud layer connecting them.
+ * TechStackSection — Visual representation of the technology powering Pico.
+ * Reframed as product capabilities rather than development tools.
+ * Shows three capability pillars: Intelligence, Communication, Hardware.
  */
 'use client';
 
@@ -10,40 +10,39 @@ import { motion, useInView } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { fadeInUp, staggerContainer, cardEntrance } from '@/lib/motion';
 
-/* ─── Stack Columns ─── */
+/* ─── Technology Pillars ─── */
 const STACK_DATA = [
     {
-        title: 'PC Simulation',
-        subtitle: 'Phase 1 — Python 3.11',
+        title: 'Intelligence',
+        subtitle: 'AI & Machine Learning',
         accentColor: 'var(--periwinkle)',
         items: [
-            { name: 'OpenCV', desc: 'Camera & image processing' },
-            { name: 'face-recognition', desc: 'Face detection & identification' },
-            { name: 'sounddevice', desc: 'Audio recording & playback' },
-            { name: 'Google Cloud STT', desc: 'Speech recognition (free tier)' },
-            { name: 'Google Gemini', desc: 'Conversational AI' },
+            { name: 'Computer Vision', desc: 'Real-time face detection & recognition' },
+            { name: 'Speech Recognition', desc: 'Wake-word detection & voice commands' },
+            { name: 'Google Gemini AI', desc: 'Natural conversational understanding' },
+            { name: 'Emotion Engine', desc: 'Adaptive emotional state machine' },
         ],
     },
     {
-        title: 'Cloud Services',
-        subtitle: 'Free Tier APIs',
+        title: 'Communication',
+        subtitle: 'Sound & Expression',
         accentColor: 'var(--teal)',
         items: [
-            { name: 'Speech-to-Text', desc: '60 min/month free' },
-            { name: 'Gemini AI', desc: '60 req/minute free' },
-            { name: 'WiFi Bridge', desc: 'ESP32 ↔ Cloud' },
+            { name: 'Sound Bank', desc: '20+ unique expressive audio clips' },
+            { name: 'OLED Display', desc: 'Animated eye expressions at 30+ FPS' },
+            { name: 'Head Movement', desc: 'Pan-tilt servo tracking & gestures' },
         ],
     },
     {
-        title: 'Robot Firmware',
-        subtitle: 'Phase 2 — C++ (Arduino)',
+        title: 'Hardware Platform',
+        subtitle: 'ESP32-S3 Powered',
         accentColor: 'var(--warm-orange)',
         items: [
-            { name: 'ESP-WHO', desc: 'On-device face detection' },
-            { name: 'ESP-SR', desc: 'Wake-word recognition' },
-            { name: 'FreeRTOS', desc: 'Real-time OS multitasking' },
-            { name: 'I2S Audio', desc: 'Digital audio output' },
-            { name: 'SSD1306 Driver', desc: 'OLED display rendering' },
+            { name: 'Dual-Core CPU', desc: '240MHz ESP32-S3 processor' },
+            { name: 'On-Device AI', desc: 'Edge computing with 8MB PSRAM' },
+            { name: 'Real-Time OS', desc: 'FreeRTOS multitasking for responsive behavior' },
+            { name: 'Digital Audio', desc: 'I2S audio output for crisp sound' },
+            { name: 'WiFi Connected', desc: 'Cloud AI services via WiFi bridge' },
         ],
     },
 ];
@@ -57,8 +56,8 @@ export default function TechStackSection() {
             <div className="max-w-[1200px] mx-auto">
                 <SectionHeader
                     badge="Technology"
-                    title="The Tech Inside"
-                    subtitle="A complete AI stack — from Python simulation to embedded firmware."
+                    title="Powered By Innovation"
+                    subtitle="Cutting-edge AI and embedded systems working together to bring Pico to life."
                 />
 
                 <motion.div
