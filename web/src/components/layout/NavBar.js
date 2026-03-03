@@ -39,10 +39,10 @@ export default function NavBar() {
     return (
         <motion.header
             className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
                 scrolled
-                    ? 'bg-cream-base/85 backdrop-blur-[12px] border-b border-warm-gray-mid/50'
-                    : 'bg-transparent'
+                    ? 'bg-cream-base/85 backdrop-blur-[12px] border-warm-gray-mid/50'
+                    : 'bg-transparent border-transparent'
             )}
         >
             <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-3">
