@@ -79,16 +79,10 @@ Tailwind's utility-first approach pairs exceptionally well with component-driven
 npm install framer-motion
 ```
 
-**GSAP (GreenSock)** — Used selectively for complex, timeline-based animations that go beyond what Framer Motion handles cleanly. Specifically for the hero sequence, the features timeline animation, and any canvas-based rendering.
-
-```bash
-npm install gsap
-```
-
 **Lenis** — For buttery smooth scroll behavior site-wide. Lenis intercepts native scroll and replaces it with a lerp-based smooth scroll that feels premium and intentional.
 
 ```bash
-npm install @studio-freight/lenis
+npm install lenis
 ```
 
 ### UI Component Libraries
@@ -993,7 +987,7 @@ Total Bundle Size:        < 250KB (initial JS, gzipped)
 
 **Image optimization:** All images and illustrations use `next/image` with explicit `width` and `height` to prevent layout shift. WebP format served to supporting browsers.
 
-**Lenis and GSAP:** Both are initialized client-side only (using `useEffect`) and destroyed on component unmount to prevent memory leaks.
+**Lenis and Framer Motion:** Both are initialized client-side only (using `useEffect`) and destroyed on component unmount to prevent memory leaks.
 
 ### SEO Configuration
 

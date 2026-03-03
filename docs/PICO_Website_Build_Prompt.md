@@ -39,7 +39,7 @@ Install every dependency listed in **Blueprint Section 2: Technology Stack**. Do
 
 ```bash
 # Core animation
-npm install framer-motion gsap @studio-freight/lenis
+npm install framer-motion lenis
 
 # UI primitives
 npm install @radix-ui/react-accordion @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-dialog
@@ -438,7 +438,7 @@ After the site is functionally complete:
 
 2. **Bundle analysis:** Run `ANALYZE=true npm run build` (after installing `@next/bundle-analyzer`) and investigate any unexpectedly large chunks.
 
-3. **GSAP tree shaking:** Only import the GSAP plugins you actually use, not the full library.
+3. **Animation optimization:** Use Framer Motion's lazy loading features and only import the animation features you need.
 
 4. **Framer Motion tree shaking:** Import only from `framer-motion` directly (e.g., `import { motion } from 'framer-motion'`) — do not import from sub-paths unless necessary.
 
