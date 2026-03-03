@@ -12,7 +12,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Badge from '@/components/ui/Badge';
-import { fadeInUp, STAGGER_DELAY } from '@/lib/motion';
+import { fadeInUp, staggerContainer } from '@/lib/motion';
 
 export default function SectionHeader({ badge, title, subtitle, className }) {
     const ref = useRef(null);
@@ -22,6 +22,7 @@ export default function SectionHeader({ badge, title, subtitle, className }) {
         <motion.div
             ref={ref}
             className={`text-center mb-12 md:mb-16 ${className || ''}`}
+            variants={staggerContainer}
             initial="initial"
             animate={isInView ? 'animate' : 'initial'}
         >
@@ -34,7 +35,6 @@ export default function SectionHeader({ badge, title, subtitle, className }) {
             <motion.h2
                 variants={fadeInUp}
                 className="text-display-md md:text-display-lg text-ink"
-                style={{ transitionDelay: `${STAGGER_DELAY}s` }}
             >
                 {title}
             </motion.h2>
@@ -43,7 +43,6 @@ export default function SectionHeader({ badge, title, subtitle, className }) {
                 <motion.p
                     variants={fadeInUp}
                     className="text-body-lg text-ink-light mt-4 max-w-2xl mx-auto"
-                    style={{ transitionDelay: `${STAGGER_DELAY * 2}s` }}
                 >
                     {subtitle}
                 </motion.p>

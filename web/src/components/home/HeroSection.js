@@ -22,7 +22,10 @@ export default function HeroSection() {
 
     useEffect(() => {
         function handleScroll() {
-            if (window.scrollY > 20) setShowScroll(false);
+            if (window.scrollY > 20) {
+                setShowScroll(false);
+                window.removeEventListener('scroll', handleScroll);
+            }
         }
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);

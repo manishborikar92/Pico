@@ -2,7 +2,7 @@
  * LenisProvider — Client-side smooth scroll provider.
  *
  * Fixes applied:
- * ✅ Migrated from deprecated `@studio-freight/lenis` → `lenis`
+ * ✅ Using `lenis` package
  * ✅ Replaced useState with useRef (no unnecessary re-renders)
  * ✅ prefers-reduced-motion is now reactive (listens for OS-level changes)
  * ✅ SSR guard added (safe for Next.js / SSR environments)
@@ -12,7 +12,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useRef } from 'react';
-import Lenis from 'lenis'; // ✅ Updated: @studio-freight/lenis is deprecated
+import Lenis from 'lenis';
 
 /* ─── Context ─── */
 

@@ -122,7 +122,7 @@ PICO follows a revolutionary **software-first approach** that minimizes risk and
 |-----------|-----------|---------|
 | **Framework** | Next.js 15+ (App Router) | Static site generation & SEO |
 | **Styling** | Tailwind CSS v4 | Utility-first styling |
-| **Animation** | Framer Motion, GSAP, Lenis | Smooth animations & interactions |
+| **Animation** | Framer Motion, Lenis | Smooth animations & interactions |
 | **UI Components** | Radix UI, shadcn/ui | Accessible component primitives |
 | **Documentation** | MDX (next-mdx-remote) | Markdown-based docs |
 
