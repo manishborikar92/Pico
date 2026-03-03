@@ -98,8 +98,8 @@ const EYE_SHAPES = {
     /* surprised: very large circle, fully open */
     surprised: (
         <>
-            <circle cx="30" cy="30" r="26" fill="#FDFBF4" />
-            <circle className="eye-pupil" cx="30" cy="30" r="10" fill="#1C1917" />
+            <circle cx="30" cy="30" r="28" fill="#FDFBF4" />
+            <circle className="eye-pupil" cx="30" cy="30" r="5" fill="#1C1917" />
         </>
     ),
 
