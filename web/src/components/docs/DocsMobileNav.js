@@ -78,10 +78,10 @@ export default function DocsMobileNav() {
                                                         href={href}
                                                         onClick={() => setIsOpen(false)}
                                                         className={cn(
-                                                            'block px-3 py-2 rounded-sharp text-body-sm transition-colors',
+                                                            'block px-3 py-2 rounded-sharp text-body-sm transition-colors border-l-2',
                                                             isActive
-                                                                ? 'bg-periwinkle/10 text-periwinkle font-medium'
-                                                                : 'text-ink-light hover:text-ink hover:bg-warm-gray-light'
+                                                                ? 'bg-periwinkle/10 text-periwinkle font-medium border-periwinkle'
+                                                                : 'text-ink-light hover:text-ink hover:bg-warm-gray-light border-transparent'
                                                         )}
                                                     >
                                                         {item.title}

@@ -29,10 +29,10 @@ export default function DocsSidebar() {
                                         <Link
                                             href={href}
                                             className={cn(
-                                                'block px-3 py-2 rounded-sharp text-body-sm transition-colors',
+                                                'block px-3 py-2 rounded-sharp text-body-sm transition-colors border-l-2',
                                                 isActive
-                                                    ? 'bg-periwinkle/10 text-periwinkle font-medium border-l-2 border-periwinkle'
-                                                    : 'text-ink-light hover:text-ink hover:bg-warm-gray-light'
+                                                    ? 'bg-periwinkle/10 text-periwinkle font-medium border-periwinkle'
+                                                    : 'text-ink-light hover:text-ink hover:bg-warm-gray-light border-transparent'
                                             )}
                                         >
                                             {item.title}
