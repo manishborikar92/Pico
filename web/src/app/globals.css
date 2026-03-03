@@ -141,6 +141,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Text Selection ─── */
+::selection {
+  background-color: var(--periwinkle);
+  color: var(--warm-white);
+}
+
+::-moz-selection {
+  background-color: var(--periwinkle);
+  color: var(--warm-white);
+}
+
+/* ─── Text Selection (For Periwinkle Backgrounds) ─── */
+.bg-periwinkle ::selection,
+.bg-periwinkle::selection {
+  background-color: var(--warm-white);
+  color: var(--periwinkle);
+}
+
+.bg-periwinkle ::-moz-selection,
+.bg-periwinkle::-moz-selection {
+  background-color: var(--warm-white);
+  color: var(--periwinkle);
+}
+
 /* ─── Accessibility: Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
 
