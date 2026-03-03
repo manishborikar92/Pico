@@ -259,7 +259,7 @@ Three `StepCard` components in a horizontal row on desktop, vertical stack on mo
 
 Between the cards (desktop only), render an SVG arrow connecting them — a dashed curved arrow with an arrowhead. The arrow uses the rainbow shimmer gradient as its stroke color.
 
-Below the cards, render a visual timeline bar: a horizontal line with three milestone marker dots and labels beneath them ("Week 1–4", "Week 5–7", "Week 8–9"). The line fills from left to right as the user scrolls through the section (use GSAP ScrollTrigger for this effect).
+Below the cards, render a visual timeline bar: a horizontal line with three milestone marker dots and labels beneath them ("Week 1–4", "Week 5–7", "Week 8–9"). The line fills from left to right as the user scrolls through the section.
 
 Below the timeline, the centered pull-quote in `heading-md` italic, `Ink Light` color, with large decorative quotation marks in a rainbow gradient.
 

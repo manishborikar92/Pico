@@ -326,7 +326,7 @@ The home page is a single continuous scroll experience divided into clearly deli
 Full-viewport-height section. Content is centered vertically and horizontally. A large animated PICO "face" sits prominently in the upper-center portion of the screen, with headline text below it.
 
 **The PICO Eye Animation (Centerpiece):**
-This is the most important element on the entire site. Two large OLED-style eye shapes (rendered as SVG or canvas) are displayed side by side on a dark rounded rectangle that mimics the robot's face. The eyes are animated using Framer Motion or GSAP:
+This is the most important element on the entire site. Two large OLED-style eye shapes (rendered as SVG or canvas) are displayed side by side on a dark rounded rectangle that mimics the robot's face. The eyes are animated using Framer Motion:
 
 - **Default state:** Eyes blink gently every 3–5 seconds (randomized). Pupils subtly shift based on mouse cursor position (parallax tracking).
 - **On page load:** Eyes appear one at a time with a "turning on" flicker effect (simulating OLED boot-up).
