@@ -9,6 +9,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as Dialog from '@radix-ui/react-dialog';
+import Link from 'next/link';
 import PicoFace from '@/components/pico/PicoFace';
 import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -47,22 +48,22 @@ export default function NavBar() {
         >
             <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-3">
                 {/* Left: Logo */}
-                <a href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2">
                     <PicoFace size="sm" autoAnimate={true} interactive={false} expression="idle" />
                     <span className="text-heading-sm font-bold font-display text-ink">Pico</span>
-                </a>
+                </Link>
 
                 {/* Center: Desktop nav links */}
                 <div className="hidden md:flex items-center gap-8">
                     {NAV_LINKS.map((link) => (
-                        <a
+                        <Link
                             key={link.label}
                             href={link.href}
                             className="text-body-sm text-ink-light hover:text-periwinkle transition-colors relative group"
                         >
                             {link.label}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-periwinkle transition-all duration-200 group-hover:w-full" />
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
@@ -119,14 +120,14 @@ export default function NavBar() {
                                         </Dialog.Close>
 
                                         {NAV_LINKS.map((link) => (
-                                            <a
+                                            <Link
                                                 key={link.label}
                                                 href={link.href}
                                                 className="text-heading-lg text-ink hover:text-periwinkle transition-colors"
                                                 onClick={() => setMobileOpen(false)}
                                             >
                                                 {link.label}
-                                            </a>
+                                            </Link>
                                         ))}
 
                                         <Button

@@ -18,6 +18,7 @@ export default function RainbowCursor({
 }) {
     const [points, setPoints] = useState([]);
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
+    const [now, setNow] = useState(0);
     const rafRef = useRef(null);
     const containerRef = useRef(null);
 
@@ -37,6 +38,7 @@ export default function RainbowCursor({
         let running = true;
 
         function animate() {
+            setNow(Date.now() / 1000);
             setPoints((prev) => {
                 const next = prev.length
                     ? [...prev]
@@ -92,7 +94,6 @@ export default function RainbowCursor({
 
     // RGB animated gradient
     const gradientId = 'trail-gradient';
-    const now = Date.now() / 1000;
     const rgb = [
         `hsl(${(now * 120) % 360},100%,60%)`,
         `hsl(${((now * 120) + 120) % 360},100%,60%)`,
