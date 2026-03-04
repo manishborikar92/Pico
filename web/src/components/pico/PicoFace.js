@@ -79,7 +79,7 @@ function getEyeShapes(expression) {
         case 'dizzy':
             return { left: 'dizzy', right: 'dizzy' };
         case 'angry':
-            return { left: 'angry', right: 'angry' };
+            return { left: 'angry-left', right: 'angry-right' };
         case 'idle':
         default:
             return { left: 'idle', right: 'idle' };

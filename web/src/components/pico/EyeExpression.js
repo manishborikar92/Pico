@@ -6,7 +6,7 @@
  * @param {string}  shape        – One of: idle, happy, curious-big, curious-small,
  *                                  sleepy, listening, confused-raised, confused-squint,
  *                                  loved, surprised, booting, thinking, error,
- *                                  low-battery, obedient, dizzy, angry
+ *                                  low-battery, obedient, dizzy, angry-left, angry-right
  * @param {{ x: number, y: number }} pupilOffset – Pixel offset for pupil position
  * @param {boolean} isBlinking   – Whether the eye is in a blink state
  * @param {number}  brightness   – 0–1 brightness multiplier
@@ -154,16 +154,26 @@ const EYE_SHAPES = {
         </g>
     ),
 
-    /* angry: angular V-shaped squint */
-    angry: (
-        <path
-            d="M10 24 L30 34 L50 24"
-            fill="none"
-            stroke="#FDFBF4"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        />
+    /* angry-left: semi-circle pointing down and rotated left */
+    'angry-left': (
+        <g transform="rotate(20, 30, 30)">
+            <path
+                d="M 12 28 A 18 18 0 0 0 48 28 Z"
+                fill="#FDFBF4"
+            />
+            <circle className="eye-pupil" cx="30" cy="34" r="6" fill="#1C1917" />
+        </g>
+    ),
+
+    /* angry-right: semi-circle pointing down and rotated right */
+    'angry-right': (
+        <g transform="rotate(-20, 30, 30)">
+            <path
+                d="M 12 28 A 18 18 0 0 0 48 28 Z"
+                fill="#FDFBF4"
+            />
+            <circle className="eye-pupil" cx="30" cy="34" r="6" fill="#1C1917" />
+        </g>
     ),
 };
 
