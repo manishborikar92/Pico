@@ -169,9 +169,9 @@ FACE_ART = {
     RobotState.ANGRY: r"""
 ╭──────────────────────────────────╮
 │                                  │
-│       ╲            ╱             │
-│        ╲ ╱╲  .  ╱╲ ╱             │
-│         >  <     >  <            │
+│       ╲▔▔╲       ╱▔▔╱         │
+│       ╱  o ╲  .  ╱ o  ╲          │
+│        ‾‾‾        ‾‾‾            │
 │                                  │
 ╰──────────────────────────────────╯
 """,
@@ -193,7 +193,7 @@ FACE_COMPACT = {
     RobotState.LOW_BATTERY: "[ _  .  _ ]",
     RobotState.OBEDIENT:    "[ ‿  .  ‿ ]",
     RobotState.DIZZY:       "[ @  .  @ ]",
-    RobotState.ANGRY:       "[ >  .  < ]",
+    RobotState.ANGRY:       "[ ╲  .  ╱ ]",
 }
 
 # ANSI color codes for terminal output (matches rainbow palette from web)

@@ -46,7 +46,7 @@ PICO has **15 emotional states**, each with a unique eye expression, associated 
 | `LOW_BATTERY` | `( _ _ )` — Droopy | Small low ellipse, reduced opacity | Battery < 15% | `sleepy_yawn_01.wav` |
 | `OBEDIENT` | `( ‿ ‿ )` — Soft arcs | Gentler upward arc than happy | Command understood | `acknowledgment_chirp.wav` |
 | `DIZZY` | `( @ @ )` — Spiral | Concentric circle + spiral path, CSS wobble | Shaken (accelerometer) | `error_buzz.wav` |
-| `ANGRY` | `( > < )` — Sharp squint | Angular V-shaped path | Shaken aggressively | `error_buzz.wav` |
+| `ANGRY` | `( ╲ ╱ )` — Furrowed brow | Asymmetric rotated semi-circles | Shaken aggressively | `error_buzz.wav` |
 | `BOOTING` | `( ── ── )` — Lines | Horizontal line at low opacity | Power on / Page load | `startup_beep.wav` |
 
 ---

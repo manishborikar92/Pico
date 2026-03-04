@@ -274,9 +274,23 @@ class FaceGui:
             s._draw_ellipse(cx, cy, 18, ys(18), thickness=2),
             s._draw_ellipse(cx, cy, 8, ys(8), thickness=2),
         ),
-        "angry": lambda s, cx, cy, px, py, t, ys: (
-            s._draw_line(cx - 18, cy - 4, cx + 2, cy + 8, thickness=4),
-            s._draw_line(cx + 2, cy + 8, cx + 22, cy - 4, thickness=4),
+        "angry-left": lambda s, cx, cy, px, py, t, ys: (
+            s.canvas.create_arc(
+                (cx - 16) * SCALE, (cy - 16) * SCALE,
+                (cx + 16) * SCALE, (cy + 16) * SCALE,
+                start=180 - 20, extent=180,
+                style=tk.CHORD, fill="white", outline="white"
+            ),
+            s._fill_ellipse(cx + px, cy + py + 4, 5, ys(5), "black"),
+        ),
+        "angry-right": lambda s, cx, cy, px, py, t, ys: (
+            s.canvas.create_arc(
+                (cx - 16) * SCALE, (cy - 16) * SCALE,
+                (cx + 16) * SCALE, (cy + 16) * SCALE,
+                start=180 + 20, extent=180,
+                style=tk.CHORD, fill="white", outline="white"
+            ),
+            s._fill_ellipse(cx + px, cy + py + 4, 5, ys(5), "black"),
         ),
     }
 
@@ -324,6 +338,7 @@ class FaceGui:
         l_shape, r_shape = {
             "curious": ("curious-big", "curious-small"),
             "confused": ("confused-raised", "confused-squint"),
+            "angry": ("angry-left", "angry-right"),
         }.get(shape_key, (shape_key, shape_key))
 
         self._render_eye_shape(LEFT_EYE_X,  EYE_Y, l_shape, self.blink_factor)
