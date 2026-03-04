@@ -13,6 +13,7 @@ import DocContent from '@/components/docs/DocContent';
 const SLUG_TO_FILE = {
     'overview': 'Project_Description.md',
     'features': 'Features.md',
+    'picoface-system': 'PicoFace_System.md',
     'hardware': 'Hardware.md',
     'development-plan': 'Development_Plan.md',
     'technology-stack': 'Technology_Stack.md',
