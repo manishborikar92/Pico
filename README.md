@@ -294,6 +294,7 @@ Comprehensive documentation is available in the `docs/` directory:
 - **[Technology Stack](docs/Technology_Stack.md)**: Detailed API integration guide
 - **[Hardware Guide](docs/Hardware.md)**: BOM, wiring diagrams, and assembly
 - **[Features](docs/Features.md)**: Complete feature specifications
+- **[PicoFace System](docs/PicoFace_System.md)**: Face animation system, emotional states, and component API
 - **[Sound Bank Guide](docs/Sound_Bank_Guide.md)**: Creating PICO's voice
 - **[Windows Guide](docs/Windows_Development_Guide.md)**: Windows-specific setup
 
@@ -422,7 +423,9 @@ npm run build
 - [x] Project structure established
 - [x] Documentation complete
 - [x] Website deployed
-- [ ] Emotion engine implementation
+- [x] PicoFace web component (8 core expressions + boot-up + idle behaviors)
+- [ ] Extended emotional states (thinking, error, dizzy, angry, obedient, low_battery)
+- [ ] Emotion engine implementation (Python simulation)
 - [ ] Face recognition training
 - [ ] Voice interaction integration
 - [ ] Sound bank creation

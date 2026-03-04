@@ -9,20 +9,17 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader';
 import PicoFace from '@/components/pico/PicoFace';
+import { getExpressionList, DOT_COLORS } from '@/components/pico/expressions';
 import { fadeInUp, staggerContainer } from '@/lib/motion';
 import { FiEye, FiMic, FiHeart } from 'react-icons/fi';
 
-/* ─── Expression Carousel Data ─── */
-const EXPRESSIONS = [
-    { expression: 'idle', label: 'IDLE', trigger: 'Default state', audio: 'Subtle breathing sounds' },
-    { expression: 'happy', label: 'HAPPY', trigger: 'Touch Sensor Activated', audio: 'Purring sound 🎵' },
-    { expression: 'curious', label: 'CURIOUS', trigger: 'Unknown Face Detected', audio: 'Questioning chirp 🎵' },
-    { expression: 'listening', label: 'LISTENING', trigger: 'Wake-Word Heard', audio: 'Acknowledgment bing 🎵' },
-    { expression: 'loved', label: 'LOVED', trigger: 'Being Petted', audio: 'Contented purring 🎵' },
-    { expression: 'surprised', label: 'SURPRISED', trigger: 'Picked Up Suddenly', audio: 'Startled beep 🎵' },
-    { expression: 'sleepy', label: 'SLEEPY', trigger: 'Long Idle Period', audio: 'Soft yawn sound 🎵' },
-    { expression: 'confused', label: 'CONFUSED', trigger: 'Command Error', audio: 'Womp-womp sound 🎵' },
-];
+/* ─── Expression Carousel Data (from centralized config, exclude booting) ─── */
+const EXPRESSIONS = getExpressionList().filter((e) => e.key !== 'booting').map((e) => ({
+    expression: e.key,
+    label: e.label,
+    trigger: e.trigger,
+    audio: e.audio,
+}));
 
 const CAROUSEL_INTERVAL = 3000;
 
@@ -32,9 +29,6 @@ const CAPABILITIES = [
     { icon: <FiMic />, color: 'var(--teal)', title: 'It Hears You', desc: 'Wake-word detection and speech-to-text. Understands your commands.' },
     { icon: <FiHeart />, color: 'var(--pink-rose)', title: 'It Feels Touch', desc: 'Capacitive touch sensor. Pet it and it purrs.' },
 ];
-
-/* ─── Dot colors matching rainbow palette ─── */
-const DOT_COLORS = ['#FF6B6B', '#FF9E40', '#FFCB47', '#7ED957', '#4ECDC4', '#45B7D1', '#8B9CF4', '#C77DFF'];
 
 export default function WhatIsPicoSection() {
     const ref = useRef(null);

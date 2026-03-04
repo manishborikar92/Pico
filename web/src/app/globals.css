@@ -497,3 +497,65 @@ body {
 .doc-prose .doc-check.done {
   color: var(--lime-green);
 }
+
+/* ========================================
+   PicoFace — Eye Animation Keyframes
+   Used by EyeExpression.js CSS class hooks
+   ======================================== */
+
+/* Thinking: pulsing dot that breathes in and out */
+@keyframes thinking-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.7); }
+  50%      { opacity: 1;   transform: scale(1.3); }
+}
+
+.eye-thinking-dot {
+  animation: thinking-pulse 1.2s ease-in-out infinite;
+  transform-origin: 30px 30px;
+}
+
+/* Dizzy: wobble rotation that rocks back and forth */
+@keyframes dizzy-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(10deg); }
+  75%      { transform: rotate(-10deg); }
+}
+
+.eye-dizzy {
+  animation: dizzy-wobble 0.6s ease-in-out infinite;
+  transform-origin: 30px 30px;
+}
+
+/* Listening: subtle pulsating scale to indicate active listening */
+@keyframes listening-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+.eye-listening-active {
+  animation: listening-pulse 1.8s ease-in-out infinite;
+  transform-origin: 30px 30px;
+}
+
+/* Error: gentle shake */
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-2px); }
+  40%      { transform: translateX(2px); }
+  60%      { transform: translateX(-1px); }
+  80%      { transform: translateX(1px); }
+}
+
+.eye-error-shake {
+  animation: error-shake 0.5s ease-in-out;
+}
+
+/* Accessibility: disable continuous eye animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .eye-thinking-dot,
+  .eye-dizzy,
+  .eye-listening-active,
+  .eye-error-shake {
+    animation: none !important;
+  }
+}

@@ -5,7 +5,8 @@
  *
  * @param {string}  shape        – One of: idle, happy, curious-big, curious-small,
  *                                  sleepy, listening, confused-raised, confused-squint,
- *                                  loved, surprised, booting
+ *                                  loved, surprised, booting, thinking, error,
+ *                                  low-battery, obedient, dizzy, angry-left, angry-right
  * @param {{ x: number, y: number }} pupilOffset – Pixel offset for pupil position
  * @param {boolean} isBlinking   – Whether the eye is in a blink state
  * @param {number}  brightness   – 0–1 brightness multiplier
@@ -61,7 +62,7 @@ const EYE_SHAPES = {
 
     /* listening: circle with swirl inside */
     listening: (
-        <>
+        <g className="eye-listening-active">
             <circle cx="30" cy="30" r="22" fill="#FDFBF4" />
             <path
                 d="M24 30 Q30 18 36 30 Q30 42 24 30"
@@ -70,7 +71,7 @@ const EYE_SHAPES = {
                 strokeWidth="3"
                 strokeLinecap="round"
             />
-        </>
+        </g>
     ),
 
     /* confused-raised: circle with raised inner brow line */
@@ -106,6 +107,73 @@ const EYE_SHAPES = {
     /* booting: horizontal line (off state) */
     booting: (
         <line x1="10" y1="30" x2="50" y2="30" stroke="#FDFBF4" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+    ),
+
+    /* ─── Extended States ─── */
+
+    /* thinking: small pulsing dot (animated via CSS @keyframes in globals.css) */
+    thinking: (
+        <circle cx="30" cy="30" r="6" fill="#FDFBF4" className="eye-thinking-dot" />
+    ),
+
+    /* error: exclamation mark — alert / system error */
+    error: (
+        <g className="eye-error-shake">
+            <line x1="30" y1="12" x2="30" y2="34" stroke="#FF6B6B" strokeWidth="6" strokeLinecap="round" />
+            <circle cx="30" cy="44" r="4" fill="#FF6B6B" />
+        </g>
+    ),
+
+    /* low-battery: droopy tired eye at reduced opacity */
+    'low-battery': (
+        <ellipse cx="30" cy="38" rx="18" ry="7" fill="#FDFBF4" opacity="0.5" />
+    ),
+
+    /* obedient: soft upward arc (gentler curve than happy) */
+    obedient: (
+        <path
+            d="M12 34 Q30 18 48 34"
+            fill="none"
+            stroke="#FDFBF4"
+            strokeWidth="5"
+            strokeLinecap="round"
+        />
+    ),
+
+    /* dizzy: spiral eye with CSS wobble animation */
+    dizzy: (
+        <g className="eye-dizzy">
+            <circle cx="30" cy="30" r="20" fill="none" stroke="#FDFBF4" strokeWidth="3" />
+            <path
+                d="M30 14 Q44 22 36 30 Q28 38 24 30 Q20 22 30 14"
+                fill="none"
+                stroke="#FDFBF4"
+                strokeWidth="3"
+                strokeLinecap="round"
+            />
+        </g>
+    ),
+
+    /* angry-left: semi-circle pointing down and rotated left */
+    'angry-left': (
+        <g transform="rotate(20, 30, 30)">
+            <path
+                d="M 12 28 A 18 18 0 0 0 48 28 Z"
+                fill="#FDFBF4"
+            />
+            <circle className="eye-pupil" cx="30" cy="34" r="6" fill="#1C1917" />
+        </g>
+    ),
+
+    /* angry-right: semi-circle pointing down and rotated right */
+    'angry-right': (
+        <g transform="rotate(-20, 30, 30)">
+            <path
+                d="M 12 28 A 18 18 0 0 0 48 28 Z"
+                fill="#FDFBF4"
+            />
+            <circle className="eye-pupil" cx="30" cy="34" r="6" fill="#1C1917" />
+        </g>
     ),
 };
 
