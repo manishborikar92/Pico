@@ -108,7 +108,7 @@ export default function PersonalitySection() {
                                 autoAnimate={false}
                             />
                             <span className="font-mono text-body-md text-periwinkle font-medium">
-                                {activeExpression.toUpperCase()}
+                                {activeExpression.replace('_', ' ').toUpperCase()}
                             </span>
                         </div>
                     </motion.div>
