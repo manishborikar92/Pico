@@ -18,6 +18,7 @@ const CTA_DELAY = 2.0;
 
 export default function HeroSection() {
     const [showScroll, setShowScroll] = useState(true);
+    const [hoverExpression, setHoverExpression] = useState(null);
     const ref = useRef(null);
 
     useEffect(() => {
@@ -48,13 +49,20 @@ export default function HeroSection() {
             {/* ── Doodle pattern background ── */}
             <DoodleBackground />
 
-            {/* PicoFace — full boot-up sequence */}
+            {/* PicoFace — full boot-up sequence, happy on hover */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
+                onMouseEnter={() => setHoverExpression('happy')}
+                onMouseLeave={() => setHoverExpression(null)}
             >
-                <PicoFace size="xl" interactive={true} autoAnimate={true} />
+                <PicoFace
+                    size="xl"
+                    expression={hoverExpression || 'idle'}
+                    interactive={true}
+                    autoAnimate={!hoverExpression}
+                />
             </motion.div>
 
             {/* Headline */}

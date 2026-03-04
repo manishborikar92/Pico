@@ -9,19 +9,16 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import SectionHeader from '@/components/shared/SectionHeader';
 import PicoFace from '@/components/pico/PicoFace';
+import { getExpressionList } from '@/components/pico/expressions';
 import { fadeInUp, staggerContainer, cardEntrance } from '@/lib/motion';
 
-/* ─── Emotion States ─── */
-const EMOTION_STATES = [
-    { key: 'idle', label: 'IDLE', sublabel: 'Default state', color: '#78716C' },
-    { key: 'happy', label: 'HAPPY', sublabel: 'Touch, praise', color: '#7ED957' },
-    { key: 'curious', label: 'CURIOUS', sublabel: 'New face', color: '#FFCB47' },
-    { key: 'listening', label: 'LISTENING', sublabel: 'Wake word', color: '#4ECDC4' },
-    { key: 'loved', label: 'LOVED', sublabel: 'Petting', color: '#FF85A1' },
-    { key: 'surprised', label: 'SURPRISED', sublabel: 'Lift detected', color: '#FF9E40' },
-    { key: 'confused', label: 'CONFUSED', sublabel: 'Error', color: '#C77DFF' },
-    { key: 'sleepy', label: 'SLEEPY', sublabel: 'Long idle', color: '#45B7D1' },
-];
+/* ─── All emotion states from centralized config (exclude booting) ─── */
+const EMOTION_STATES = getExpressionList().filter((s) => s.key !== 'booting').map((s) => ({
+    key: s.key,
+    label: s.label,
+    sublabel: s.trigger,
+    color: s.color,
+}));
 
 export default function PersonalitySection() {
     const ref = useRef(null);
@@ -47,7 +44,7 @@ export default function PersonalitySection() {
                     {/* Left — State Machine Grid */}
                     <motion.div variants={fadeInUp}>
                         <h3 className="text-heading-md text-ink mb-6">Emotion States</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                             {EMOTION_STATES.map((state) => (
                                 <motion.button
                                     key={state.key}

@@ -3,7 +3,7 @@
  * Renders a dark rounded rectangle with two EyeExpression sub-components.
  * Supports expressions, boot-up sequence, idle behaviors, and mouse tracking.
  *
- * @param {'idle'|'happy'|'curious'|'sleepy'|'listening'|'confused'|'loved'|'surprised'|'booting'} expression
+ * @param {'idle'|'happy'|'curious'|'sleepy'|'listening'|'confused'|'loved'|'surprised'|'booting'|'thinking'|'error'|'low_battery'|'obedient'|'dizzy'|'angry'} expression
  * @param {'sm'|'md'|'lg'|'xl'} size
  * @param {boolean} interactive  — enables mouse-tracking
  * @param {boolean} autoAnimate  — enables random idle behaviors
@@ -67,6 +67,19 @@ function getEyeShapes(expression) {
             return { left: 'surprised', right: 'surprised' };
         case 'booting':
             return { left: 'booting', right: 'booting' };
+        /* ─── Extended states ─── */
+        case 'thinking':
+            return { left: 'thinking', right: 'thinking' };
+        case 'error':
+            return { left: 'error', right: 'error' };
+        case 'low_battery':
+            return { left: 'low-battery', right: 'low-battery' };
+        case 'obedient':
+            return { left: 'obedient', right: 'obedient' };
+        case 'dizzy':
+            return { left: 'dizzy', right: 'dizzy' };
+        case 'angry':
+            return { left: 'angry', right: 'angry' };
         case 'idle':
         default:
             return { left: 'idle', right: 'idle' };
