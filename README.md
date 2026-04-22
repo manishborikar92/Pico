@@ -454,9 +454,10 @@ npm run build
 
 ## 📝 License
 
-This project is private and proprietary. All rights reserved.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Internal Use Only** — Not for public distribution or open-source release.
+**Open Source Hardware & Software**
+Pico is an open-source project. We encourage the community to build, modify, and improve upon both the software and hardware designs.
 
 ---
 
